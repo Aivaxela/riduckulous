@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dn2xyrnkb7grs"]
+
+[ext_resource type="Script" uid="uid://car03d1e2hufj" path="res://scenes/fox.gd" id="1_q320a"]
+[ext_resource type="Texture2D" uid="uid://q5dslbr8cupb" path="res://sprites/fox.png" id="2_ufccv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ufccv"]
+radius = 17.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_35nom"]
+radius = 55.0
+
+[node name="Fox" type="CharacterBody2D" node_paths=PackedStringArray("duck_check_area")]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_q320a")
+duck_check_area = NodePath("duckling_check")
+
+[node name="fox_body" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ufccv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ufccv")
+
+[node name="duckling_check" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="duckling_check"]
+shape = SubResource("CircleShape2D_35nom")
+debug_color = Color(0.881, 0, 0.821, 0.083)

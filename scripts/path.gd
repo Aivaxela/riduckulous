@@ -9,4 +9,3 @@ func spawn_duck():
 	add_child(new_duck)
 	var new_duck_speed = randf_range(0.06, 0.18)
 	new_duck.speed = new_duck_speed
-	print("spawning duck with speed of %.2f" % new_duck_speed)

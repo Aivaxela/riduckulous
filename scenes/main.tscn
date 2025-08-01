@@ -1,82 +1,108 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8m4t74vlhk3d"]
+[gd_scene load_steps=11 format=3 uid="uid://c8m4t74vlhk3d"]
 
 [ext_resource type="Texture2D" uid="uid://b5jgaheix05an" path="res://sprites/map.png" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://djvynpqfjhfet" path="res://scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="Script" uid="uid://cljqsq1dj5esv" path="res://scripts/path.gd" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://6xcuunw2xy23" path="res://scenes/duck.tscn" id="3_tefeu"]
+[ext_resource type="FontFile" uid="uid://b3548kydyy6v1" path="res://fonts/cutepixel/CutePixel.ttf" id="5_tefeu"]
+[ext_resource type="Script" uid="uid://qqafx55os8ci" path="res://scripts/fox_spawns.gd" id="6_tefeu"]
+[ext_resource type="PackedScene" uid="uid://dn2xyrnkb7grs" path="res://scenes/fox.tscn" id="7_o6xl0"]
 
 [sub_resource type="Curve2D" id="Curve2D_jyhfs"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 564, 124, 0, 0, 0, 0, 307, 147, 0, 0, 0, 0, 238, 239, 0, 0, 0, 0, 161, 448, 0, 0, 0, 0, 297, 500, 0, 0, 0, 0, 418, 597, 0, 0, 0, 0, 630, 659, 0, 0, 0, 0, 811, 592, 0, 0, 0, 0, 970, 611, 0, 0, 0, 0, 1051, 524, 0, 0, 0, 0, 1112, 356, 0, 0, 0, 0, 1141, 170, 0, 0, 0, 0, 963, 130, 0, 0, 0, 0, 804, 123, 0, 0, 0, 0, 564, 123)
+"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 33.9278, -16.5398, -33.9278, 16.5398, 399, 125, 18.075, -28.7966, -18.075, 28.7966, 346, 160, 26.294, -3.39278, -26.294, 3.39278, 288, 192, -13.9952, -19.5085, 13.9952, 19.5085, 262, 236, 27.1422, -44.5302, -27.1422, 44.5302, 286, 288, 6.78556, -36.8965, -6.78556, 36.8965, 270, 329, -16.5398, -23.7495, 16.5398, 23.7495, 307, 346, -17.388, -24.5977, 17.388, 24.5977, 319, 371, -33.9278, -5.93737, 33.9278, 5.93737, 371, 355, -26.294, -4.24098, 26.294, 4.24098, 426, 351, -57.6773, -3.81688, 57.6773, 3.81688, 505, 368, -53.4363, 15.6916, 53.4363, -15.6916, 590, 365, -32.2314, 22.0531, 32.2314, -22.0531, 664, 351, -18.2362, 19.9326, 18.2362, -19.9326, 710, 336, -2.96868, 37.3206, 2.96868, -37.3206, 720, 289, -0.848195, 34.3519, 0.848195, -34.3519, 701, 227, 8.05785, 45.3784, -8.05785, -45.3784, 745, 152, 45.3784, 13.147, -45.3784, -13.147, 652, 106, 30.535, 29.6868, -30.535, -29.6868, 534, 125, 0, 0, 0, 0, 478, 116)
 }
-point_count = 15
+point_count = 21
 
-[sub_resource type="Curve2D" id="Curve2D_tbgi4"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 564, 124, 0, 0, 0, 0, 373, 213, 0, 0, 0, 0, 176, 210, 0, 0, 0, 0, 102, 481, 0, 0, 0, 0, 276, 550, 0, 0, 0, 0, 383, 649, 0, 0, 0, 0, 628, 606, 0, 0, 0, 0, 864, 637, 0, 0, 0, 0, 959, 542, 0, 0, 0, 0, 1062, 529, 0, 0, 0, 0, 1093, 394, 0, 0, 0, 0, 1175, 224, 0, 0, 0, 0, 1034, 103, 0, 0, 0, 0, 745, 166, 0, 0, 0, 0, 564, 123)
-}
-point_count = 15
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
+size = Vector2(79.1424, 12.4998)
 
-[sub_resource type="Curve2D" id="Curve2D_o6xl0"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 564, 124, 0, 0, 0, 0, 178, 119, 0, 0, 0, 0, 106, 274, 0, 0, 0, 0, 132, 530, 0, 0, 0, 0, 328, 469, 0, 0, 0, 0, 399, 617, 0, 0, 0, 0, 682, 676, 0, 0, 0, 0, 908, 632, 0, 0, 0, 0, 1102, 614, 0, 0, 0, 0, 1131, 443, 0, 0, 0, 0, 1164, 272, 0, 0, 0, 0, 1050, 217, 0, 0, 0, 0, 827, 101, 0, 0, 0, 0, 663, 93, 0, 0, 0, 0, 564, 123)
-}
-point_count = 15
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(64.5708, 12.4998)
 
-[sub_resource type="Curve2D" id="Curve2D_tefeu"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 717, 227, 0, 0, 0, 0, 561, 193, 0, 0, 0, 0, 420, 256, 0, 0, 0, 0, 298, 355, 0, 0, 0, 0, 392, 430, 0, 0, 0, 0, 431, 503, 0, 0, 0, 0, 571, 511, 0, 0, 0, 0, 713, 533, 0, 0, 0, 0, 844, 523, 0, 0, 0, 0, 921, 502, 0, 0, 0, 0, 993, 455, 0, 0, 0, 0, 973, 337, 0, 0, 0, 0, 1003, 269, 0, 0, 0, 0, 959, 203, 0, 0, 0, 0, 853, 215, 0, 0, 0, 0, 719, 228)
-}
-point_count = 16
-
-[node name="main" type="Node"]
+[node name="main" type="Node" node_paths=PackedStringArray("volume_slider")]
+script = ExtResource("1_tbgi4")
+volume_slider = NodePath("volume/voume_slider")
 
 [node name="map" type="Sprite2D" parent="."]
 texture = ExtResource("1_o5qli")
 centered = false
 
+[node name="volume" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0.757)
+offset_left = 501.0
+offset_top = 325.0
+offset_right = 605.0
+offset_bottom = 356.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 20
+text = "volume"
+horizontal_alignment = 2
+
+[node name="voume_slider" type="HSlider" parent="volume"]
+layout_mode = 0
+offset_top = 18.0
+offset_right = 102.0
+offset_bottom = 34.0
+min_value = -80.0
+max_value = 10.0
+step = 5.0
+value = -20.0
+
 [node name="path1" type="Path2D" parent="."]
 self_modulate = Color(100, 100, 0, 1)
+position = Vector2(-193, -58)
 curve = SubResource("Curve2D_jyhfs")
 script = ExtResource("2_sugp2")
 sprite_flip_thresholds = Array[float]([0.23, 0.77])
 duck = ExtResource("3_tefeu")
 
 [node name="duck" parent="path1" instance=ExtResource("3_tefeu")]
-position = Vector2(564, 124)
-rotation = 3.05234
+position = Vector2(478, 116)
+rotation = 2.84092
 
-[node name="path2" type="Path2D" parent="."]
-self_modulate = Color(100, 0, 0, 1)
-curve = SubResource("Curve2D_tbgi4")
-script = ExtResource("2_sugp2")
-sprite_flip_thresholds = Array[float]([0.24, 0.75])
-duck = ExtResource("3_tefeu")
+[node name="duckling_juvie_gate" type="Area2D" parent="."]
+position = Vector2(173, 293)
+collision_mask = 0
 
-[node name="duck" parent="path2" instance=ExtResource("3_tefeu")]
-position = Vector2(564, 124)
-rotation = 2.70554
-speed = 0.12
+[node name="CollisionShape2D" type="CollisionShape2D" parent="duckling_juvie_gate"]
+rotation = -1.23337
+shape = SubResource("RectangleShape2D_tbgi4")
+debug_color = Color(1, 0.008, 0.042, 0.116)
 
-[node name="path3" type="Path2D" parent="."]
-self_modulate = Color(100, 0, 100, 1)
-curve = SubResource("Curve2D_o6xl0")
-script = ExtResource("2_sugp2")
-sprite_flip_thresholds = Array[float]([0.28, 0.77])
-duck = ExtResource("3_tefeu")
+[node name="juvie_adult_gate" type="Area2D" parent="."]
+position = Vector2(521, 204)
+rotation = 1.22747
+collision_mask = 0
 
-[node name="duck" parent="path3" instance=ExtResource("3_tefeu")]
-position = Vector2(564, 124)
-rotation = -3.12864
-speed = 0.09
+[node name="CollisionShape2D" type="CollisionShape2D" parent="juvie_adult_gate"]
+position = Vector2(-29.3273, -4.11208)
+rotation = -1.23337
+shape = SubResource("RectangleShape2D_tefeu")
+debug_color = Color(1, 0.008, 0.042, 0.116)
 
-[node name="water_path1" type="Path2D" parent="."]
-self_modulate = Color(0, 0, 100, 1)
-curve = SubResource("Curve2D_tefeu")
-script = ExtResource("2_sugp2")
-sprite_flip_thresholds = Array[float]([0.265, 0.7])
-duck = ExtResource("3_tefeu")
+[node name="fox_spawns" type="Node2D" parent="." node_paths=PackedStringArray("fox_spawns", "fox_spawn_timer", "fox_goals")]
+script = ExtResource("6_tefeu")
+fox_scene = ExtResource("7_o6xl0")
+fox_spawns = [NodePath("spawn"), NodePath("spawn2"), NodePath("spawn3")]
+fox_spawn_timer = NodePath("spawn_timer")
+fox_goals = [NodePath("fox_goal"), NodePath("fox_goal2")]
 
-[node name="duck" parent="water_path1" instance=ExtResource("3_tefeu")]
-position = Vector2(717, 227)
-rotation = -2.927
-speed = 0.07
+[node name="spawn_timer" type="Timer" parent="fox_spawns"]
+wait_time = 5.0
+autostart = true
+
+[node name="spawn" type="Marker2D" parent="fox_spawns"]
+position = Vector2(37, 11)
+
+[node name="spawn2" type="Marker2D" parent="fox_spawns"]
+position = Vector2(14, 172)
+
+[node name="spawn3" type="Marker2D" parent="fox_spawns"]
+position = Vector2(24, 342)
+
+[node name="fox_goal" type="Marker2D" parent="fox_spawns"]
+position = Vector2(103, 88)
+
+[node name="fox_goal2" type="Marker2D" parent="fox_spawns"]
+position = Vector2(98, 226)

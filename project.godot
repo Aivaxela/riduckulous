@@ -18,9 +18,16 @@ config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=1280
-window/size/viewport_height=720
+window/size/viewport_width=640
+window/size/viewport_height=360
 window/stretch/mode="viewport"
+window/size/window_width_override.debug=1920
+window/size/window_height_override.debug=1080
+
+[layer_names]
+
+2d_physics/layer_1="growth_area"
+2d_physics/layer_2="fox_ducking_check"
 
 [rendering]
 
