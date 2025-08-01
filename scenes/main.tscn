@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8m4t74vlhk3d"]
+[gd_scene load_steps=8 format=3 uid="uid://c8m4t74vlhk3d"]
 
 [ext_resource type="Texture2D" uid="uid://b5jgaheix05an" path="res://sprites/map.png" id="1_o5qli"]
-[ext_resource type="Texture2D" uid="uid://bxfb7xx863w8l" path="res://sprites/duck.png" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://bs5n35x2t2lmh" path="res://scenes/duck_pathing.gd" id="2_jyhfs"]
-[ext_resource type="Script" uid="uid://cljqsq1dj5esv" path="res://scenes/path.gd" id="2_sugp2"]
-[ext_resource type="Script" uid="uid://b1rswft5wgdu1" path="res://scenes/duck.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://cljqsq1dj5esv" path="res://scripts/path.gd" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://6xcuunw2xy23" path="res://scenes/duck.tscn" id="3_tefeu"]
 
 [sub_resource type="Curve2D" id="Curve2D_jyhfs"]
 _data = {
@@ -41,81 +39,44 @@ self_modulate = Color(100, 100, 0, 1)
 curve = SubResource("Curve2D_jyhfs")
 script = ExtResource("2_sugp2")
 sprite_flip_thresholds = Array[float]([0.23, 0.77])
+duck = ExtResource("3_tefeu")
 
-[node name="duck" type="PathFollow2D" parent="path1"]
-position = Vector2(1141.04, 170.707)
-rotation = -1.41613
-progress = 1955.45
-script = ExtResource("2_jyhfs")
-speed = 0.1
-
-[node name="duck_sprite" type="Sprite2D" parent="path1/duck" node_paths=PackedStringArray("path")]
-texture = ExtResource("2_0wfyh")
-script = ExtResource("4_jyhfs")
-path = NodePath("..")
-
-[node name="duck2" type="PathFollow2D" parent="path1"]
-position = Vector2(1109.42, 363.093)
-rotation = -1.2225
-progress = 1760.5
-script = ExtResource("2_jyhfs")
-speed = 0.12
-
-[node name="duck_sprite" type="Sprite2D" parent="path1/duck2" node_paths=PackedStringArray("path")]
-texture = ExtResource("2_0wfyh")
-script = ExtResource("4_jyhfs")
-path = NodePath("..")
+[node name="duck" parent="path1" instance=ExtResource("3_tefeu")]
+position = Vector2(564, 124)
+rotation = 3.05234
 
 [node name="path2" type="Path2D" parent="."]
 self_modulate = Color(100, 0, 0, 1)
 curve = SubResource("Curve2D_tbgi4")
 script = ExtResource("2_sugp2")
 sprite_flip_thresholds = Array[float]([0.24, 0.75])
+duck = ExtResource("3_tefeu")
 
-[node name="duck" type="PathFollow2D" parent="path2"]
-position = Vector2(1174.97, 224.372)
-rotation = -1.12137
-progress = 2073.35
-script = ExtResource("2_jyhfs")
-speed = 0.09
-
-[node name="duck_sprite" type="Sprite2D" parent="path2/duck" node_paths=PackedStringArray("path")]
-texture = ExtResource("2_0wfyh")
-script = ExtResource("4_jyhfs")
-path = NodePath("..")
+[node name="duck" parent="path2" instance=ExtResource("3_tefeu")]
+position = Vector2(564, 124)
+rotation = 2.70554
+speed = 0.12
 
 [node name="path3" type="Path2D" parent="."]
 self_modulate = Color(100, 0, 100, 1)
 curve = SubResource("Curve2D_o6xl0")
 script = ExtResource("2_sugp2")
 sprite_flip_thresholds = Array[float]([0.28, 0.77])
+duck = ExtResource("3_tefeu")
 
-[node name="duck" type="PathFollow2D" parent="path3"]
-position = Vector2(1162.58, 279.363)
-rotation = -1.38016
-progress = 2237.94
-script = ExtResource("2_jyhfs")
-speed = 0.18
-
-[node name="duck_sprite" type="Sprite2D" parent="path3/duck" node_paths=PackedStringArray("path")]
-texture = ExtResource("2_0wfyh")
-script = ExtResource("4_jyhfs")
-path = NodePath("..")
+[node name="duck" parent="path3" instance=ExtResource("3_tefeu")]
+position = Vector2(564, 124)
+rotation = -3.12864
+speed = 0.09
 
 [node name="water_path1" type="Path2D" parent="."]
 self_modulate = Color(0, 0, 100, 1)
 curve = SubResource("Curve2D_tefeu")
 script = ExtResource("2_sugp2")
 sprite_flip_thresholds = Array[float]([0.265, 0.7])
+duck = ExtResource("3_tefeu")
 
-[node name="duck" type="PathFollow2D" parent="water_path1"]
-position = Vector2(985.897, 459.637)
-rotation = -0.578325
-progress = 1246.94
-script = ExtResource("2_jyhfs")
+[node name="duck" parent="water_path1" instance=ExtResource("3_tefeu")]
+position = Vector2(717, 227)
+rotation = -2.927
 speed = 0.07
-
-[node name="duck_sprite" type="Sprite2D" parent="water_path1/duck" node_paths=PackedStringArray("path")]
-texture = ExtResource("2_0wfyh")
-script = ExtResource("4_jyhfs")
-path = NodePath("..")

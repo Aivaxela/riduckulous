@@ -4,6 +4,7 @@ extends PathFollow2D
 @export var speed = 0.05
 
 var parent: Path2D
+var loop_progress_tracker: float = 0.00
 
 func _ready():
 	parent = get_parent()
@@ -11,6 +12,10 @@ func _ready():
 func _process(_delta):
 	rotation = 0
 	moving_right = progress_ratio > parent.sprite_flip_thresholds[0] && progress_ratio < parent.sprite_flip_thresholds[1]
+	if loop_progress_tracker > progress_ratio:
+		get_parent().spawn_duck()
+		
+	loop_progress_tracker = progress_ratio
 
 func _physics_process(delta):
 	loop_movement(delta)

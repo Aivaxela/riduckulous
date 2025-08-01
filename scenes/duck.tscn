@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://6xcuunw2xy23"]
+
+[ext_resource type="Script" uid="uid://bs5n35x2t2lmh" path="res://scripts/duck_controller.gd" id="1_ircvx"]
+[ext_resource type="Texture2D" uid="uid://bxfb7xx863w8l" path="res://sprites/duck.png" id="2_kls7j"]
+[ext_resource type="Script" uid="uid://b1rswft5wgdu1" path="res://scripts/duck.gd" id="3_hwgnm"]
+
+[node name="duck" type="PathFollow2D"]
+rotation = -1.41613
+script = ExtResource("1_ircvx")
+speed = 0.1
+
+[node name="duck_sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("path")]
+texture = ExtResource("2_kls7j")
+script = ExtResource("3_hwgnm")
+path = NodePath("..")
