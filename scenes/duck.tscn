@@ -1,15 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://6xcuunw2xy23"]
+[gd_scene load_steps=6 format=3 uid="uid://6xcuunw2xy23"]
 
 [ext_resource type="Script" uid="uid://bs5n35x2t2lmh" path="res://scripts/duck_controller.gd" id="1_ircvx"]
+[ext_resource type="PackedScene" uid="uid://c3pk4jyukxot1" path="res://scenes/quack.tscn" id="2_hwgnm"]
 [ext_resource type="Texture2D" uid="uid://bxfb7xx863w8l" path="res://sprites/duck.png" id="2_kls7j"]
 [ext_resource type="Script" uid="uid://b1rswft5wgdu1" path="res://scripts/duck.gd" id="3_hwgnm"]
+[ext_resource type="AudioStream" uid="uid://co2vx25c5iy1c" path="res://sfx/quack.wav" id="4_kls7j"]
 
-[node name="duck" type="PathFollow2D"]
-rotation = -1.41613
+[node name="duck" type="PathFollow2D" node_paths=PackedStringArray("quack_sfx", "quack_timer")]
 script = ExtResource("1_ircvx")
 speed = 0.1
+quack_sfx = NodePath("quack_sfx")
+quack_timer = NodePath("quack_timer")
+quack_label_scene = ExtResource("2_hwgnm")
 
 [node name="duck_sprite" type="Sprite2D" parent="." node_paths=PackedStringArray("path")]
 texture = ExtResource("2_kls7j")
 script = ExtResource("3_hwgnm")
 path = NodePath("..")
+
+[node name="quack_sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kls7j")
+
+[node name="quack_timer" type="Timer" parent="."]
+wait_time = 10.0

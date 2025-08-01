@@ -3,6 +3,7 @@ extends Path2D
 @export var sprite_flip_thresholds: Array[float] = [0.00,0.00]
 @export var duck: PackedScene
 
+
 func spawn_duck():
 	var new_duck = duck.instantiate()
 	add_child(new_duck)
