@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8m4t74vlhk3d"]
+
+[ext_resource type="Texture2D" uid="uid://b5jgaheix05an" path="res://sprites/map.png" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://bxfb7xx863w8l" path="res://sprites/duck.png" id="2_0wfyh"]
+
+[node name="main" type="Node"]
+
+[node name="map" type="Sprite2D" parent="."]
+texture = ExtResource("1_o5qli")
+centered = false
+
+[node name="duck" type="Sprite2D" parent="."]
+position = Vector2(727, 131)
+texture = ExtResource("2_0wfyh")
