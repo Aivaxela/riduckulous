@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxfb7xx863w8l"
-path="res://.godot/imported/adult.png-5d71f0eef1ac4878934191325200499b.ctex"
+uid="uid://ds0jryu4kdaoc"
+path="res://.godot/imported/genderkerchief.png-52b2b3edca70fd9fa293605b8e462601.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/adult.png"
-dest_files=["res://.godot/imported/adult.png-5d71f0eef1ac4878934191325200499b.ctex"]
+source_file="res://sprites/genderkerchief.png"
+dest_files=["res://.godot/imported/genderkerchief.png-52b2b3edca70fd9fa293605b8e462601.ctex"]
 
 [params]
 

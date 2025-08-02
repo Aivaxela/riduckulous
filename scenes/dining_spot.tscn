@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=3 uid="uid://dqsmqaptl7i6m"]
+
+[ext_resource type="Script" uid="uid://06yggyfsy3yw" path="res://scenes/dining_spot.gd" id="1_0j5sv"]
+[ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="2_7wgey"]
+[ext_resource type="Texture2D" uid="uid://ddwq5cx535hpl" path="res://sprites/duck_juvenile.png" id="3_egrlp"]
+[ext_resource type="Texture2D" uid="uid://bu3esoh04iaux" path="res://sprites/barrel.png" id="3_tcw2n"]
+[ext_resource type="Texture2D" uid="uid://ip7aotaobkd7" path="res://sprites/table.png" id="4_egrlp"]
+[ext_resource type="Texture2D" uid="uid://ds0jryu4kdaoc" path="res://sprites/genderkerchief.png" id="4_tglcy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lnym8"]
+shader = ExtResource("2_7wgey")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tglcy"]
+shader = ExtResource("2_7wgey")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvve8"]
+size = Vector2(11, 137)
+
+[node name="dining_spot" type="Node2D" node_paths=PackedStringArray("drake_sprite", "hen_sprite", "release_timer")]
+script = ExtResource("1_0j5sv")
+drake_sprite = NodePath("drake")
+hen_sprite = NodePath("hen")
+release_timer = NodePath("release_timer")
+
+[node name="release_timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="drake" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_lnym8")
+position = Vector2(26, -17)
+texture = ExtResource("3_egrlp")
+
+[node name="Sprite2D" type="Sprite2D" parent="drake"]
+modulate = Color(0.5, 0.75, 1.2, 1)
+position = Vector2(5.96046e-08, -4)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_tglcy")
+
+[node name="hen" type="Sprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_lnym8")
+position = Vector2(-15, -17)
+texture = ExtResource("3_egrlp")
+flip_h = true
+
+[node name="Sprite2D" type="Sprite2D" parent="hen"]
+modulate = Color(1.1, 0.6, 1, 1)
+position = Vector2(5.96046e-08, -4)
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("4_tglcy")
+
+[node name="drake_seating_pos" type="Marker2D" parent="."]
+position = Vector2(26, -17)
+
+[node name="hen_seating_spot" type="Marker2D" parent="."]
+position = Vector2(-15, -17)
+
+[node name="drake_barrel" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tglcy")
+position = Vector2(32, 0)
+texture = ExtResource("3_tcw2n")
+
+[node name="hen_barrel" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tglcy")
+position = Vector2(-21, 0)
+texture = ExtResource("3_tcw2n")
+
+[node name="table" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_tglcy")
+position = Vector2(5, -2)
+texture = ExtResource("4_egrlp")
+
+[node name="duck_capture_area" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="duck_capture_area"]
+position = Vector2(-20, -0.5)
+shape = SubResource("RectangleShape2D_qvve8")

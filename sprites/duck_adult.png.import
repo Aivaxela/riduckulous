@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtg12jjn7j1n"
-path="res://.godot/imported/duckling.png-ddf3a27f7ce9f2d501f7bf4a77f3e509.ctex"
+uid="uid://bxfb7xx863w8l"
+path="res://.godot/imported/duck_adult.png-ff48d38f23aa9ba3a528bbeaaf61122e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/duckling.png"
-dest_files=["res://.godot/imported/duckling.png-ddf3a27f7ce9f2d501f7bf4a77f3e509.ctex"]
+source_file="res://sprites/duck_adult.png"
+dest_files=["res://.godot/imported/duck_adult.png-ff48d38f23aa9ba3a528bbeaaf61122e.ctex"]
 
 [params]
 

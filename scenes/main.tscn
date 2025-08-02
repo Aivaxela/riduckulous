@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c8m4t74vlhk3d"]
+[gd_scene load_steps=21 format=3 uid="uid://c8m4t74vlhk3d"]
 
 [ext_resource type="Texture2D" uid="uid://b5jgaheix05an" path="res://sprites/map.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://djvynpqfjhfet" path="res://scripts/main.gd" id="1_tbgi4"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://b3548kydyy6v1" path="res://fonts/cutepixel/CutePixel.ttf" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://qqafx55os8ci" path="res://scripts/fox_spawns.gd" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dn2xyrnkb7grs" path="res://scenes/fox.tscn" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://d28hfsoit3yn1" path="res://scenes/boat.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://dqsmqaptl7i6m" path="res://scenes/dining_spot.tscn" id="9_85g3d"]
 
 [sub_resource type="Curve2D" id="Curve2D_jyhfs"]
 _data = {
@@ -19,6 +21,30 @@ size = Vector2(79.1424, 12.4998)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
 size = Vector2(64.5708, 12.4998)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6xl0"]
+size = Vector2(20, 435)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
+size = Vector2(241, 4.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ya4ey"]
+size = Vector2(247.563, 4.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eb6dy"]
+size = Vector2(62.0882, 4.08809)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trceg"]
+size = Vector2(135.048, 4.08809)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a8y0u"]
+size = Vector2(83.0791, 4.74004)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkv2x"]
+size = Vector2(91.0347, 5.60947)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbj1t"]
+size = Vector2(38.7618, 5.60947)
 
 [node name="main" type="Node" node_paths=PackedStringArray("volume_slider")]
 script = ExtResource("1_tbgi4")
@@ -49,17 +75,20 @@ max_value = 10.0
 step = 5.0
 value = -20.0
 
-[node name="path1" type="Path2D" parent="."]
+[node name="path1" type="Path2D" parent="." groups=["path"]]
 self_modulate = Color(100, 100, 0, 1)
 position = Vector2(-193, -58)
 curve = SubResource("Curve2D_jyhfs")
 script = ExtResource("2_sugp2")
-sprite_flip_thresholds = Array[float]([0.23, 0.77])
 duck = ExtResource("3_tefeu")
+duck_speed_min = 0.01
 
 [node name="duck" parent="path1" instance=ExtResource("3_tefeu")]
-position = Vector2(478, 116)
-rotation = 2.84092
+position = Vector2(298.914, 339.335)
+rotation = 0.347969
+progress = 442.725
+quack_timer_min = 0.5
+quack_timer_max = 1.0
 
 [node name="duckling_juvie_gate" type="Area2D" parent="."]
 position = Vector2(173, 293)
@@ -81,16 +110,25 @@ rotation = -1.23337
 shape = SubResource("RectangleShape2D_tefeu")
 debug_color = Color(1, 0.008, 0.042, 0.116)
 
-[node name="fox_spawns" type="Node2D" parent="." node_paths=PackedStringArray("fox_spawns", "fox_spawn_timer", "fox_goals")]
+[node name="fox_spawns" type="Node2D" parent="." node_paths=PackedStringArray("fox_spawns", "fox_goals", "fox_spawn_timer")]
 script = ExtResource("6_tefeu")
 fox_scene = ExtResource("7_o6xl0")
 fox_spawns = [NodePath("spawn"), NodePath("spawn2"), NodePath("spawn3")]
-fox_spawn_timer = NodePath("spawn_timer")
 fox_goals = [NodePath("fox_goal"), NodePath("fox_goal2")]
+fox_spawn_timer = NodePath("spawn_timer")
+fox_spawn_timer_min = 2
+fox_spawn_timer_max = 4
 
 [node name="spawn_timer" type="Timer" parent="fox_spawns"]
-wait_time = 5.0
-autostart = true
+
+[node name="fox_escape_area" type="Area2D" parent="fox_spawns"]
+position = Vector2(-47, 173)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fox_spawns/fox_escape_area"]
+position = Vector2(-10, -1)
+shape = SubResource("RectangleShape2D_o6xl0")
 
 [node name="spawn" type="Marker2D" parent="fox_spawns"]
 position = Vector2(37, 11)
@@ -106,3 +144,66 @@ position = Vector2(103, 88)
 
 [node name="fox_goal2" type="Marker2D" parent="fox_spawns"]
 position = Vector2(98, 226)
+
+[node name="boat" parent="." instance=ExtResource("8_tipki")]
+position = Vector2(345, 177)
+
+[node name="boat_boundaries" type="StaticBody2D" parent="."]
+position = Vector2(290, 171)
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="boat_boundaries"]
+position = Vector2(56.5, -76)
+shape = SubResource("RectangleShape2D_tipki")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="boat_boundaries"]
+position = Vector2(25.7813, 76)
+shape = SubResource("RectangleShape2D_ya4ey")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="boat_boundaries"]
+position = Vector2(-138.032, -6.04472)
+rotation = 1.57619
+shape = SubResource("RectangleShape2D_eb6dy")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="boat_boundaries"]
+position = Vector2(177.803, -6.52065)
+rotation = 1.57619
+shape = SubResource("RectangleShape2D_trceg")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="boat_boundaries"]
+position = Vector2(-115.397, 37.932)
+rotation = 1.05348
+shape = SubResource("RectangleShape2D_a8y0u")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="boat_boundaries"]
+position = Vector2(-97.0419, -54.1748)
+rotation = 2.70409
+shape = SubResource("RectangleShape2D_jkv2x")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="boat_boundaries"]
+position = Vector2(160, 67)
+rotation = 2.70409
+shape = SubResource("RectangleShape2D_jbj1t")
+
+[node name="dining_spots" type="Node2D" parent="."]
+
+[node name="dining_spot" parent="dining_spots" instance=ExtResource("9_85g3d")]
+position = Vector2(300, 324)
+release_point = 0.48
+
+[node name="dining_spot2" parent="dining_spots" instance=ExtResource("9_85g3d")]
+position = Vector2(402, 278)
+release_point = 0.55
+
+[node name="dining_spot3" parent="dining_spots" instance=ExtResource("9_85g3d")]
+position = Vector2(489, 315)
+release_point = 0.62
+
+[node name="dining_spot4" parent="dining_spots" instance=ExtResource("9_85g3d")]
+position = Vector2(257, 267)
+release_point = 0.45
+
+[node name="dining_spot5" parent="dining_spots" instance=ExtResource("9_85g3d")]
+position = Vector2(530, 249)
+release_point = 0.67

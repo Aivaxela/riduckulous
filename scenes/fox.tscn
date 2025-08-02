@@ -1,30 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://dn2xyrnkb7grs"]
+[gd_scene load_steps=8 format=3 uid="uid://dn2xyrnkb7grs"]
 
-[ext_resource type="Script" uid="uid://car03d1e2hufj" path="res://scenes/fox.gd" id="1_q320a"]
+[ext_resource type="Script" uid="uid://car03d1e2hufj" path="res://scripts/fox.gd" id="1_q320a"]
+[ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="2_35nom"]
 [ext_resource type="Texture2D" uid="uid://q5dslbr8cupb" path="res://sprites/fox.png" id="2_ufccv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ufccv"]
-radius = 17.0
+radius = 5.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3u0el"]
+shader = ExtResource("2_35nom")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_35nom"]
 radius = 55.0
 
-[node name="Fox" type="CharacterBody2D" node_paths=PackedStringArray("duck_check_area")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3u0el"]
+radius = 11.0
+
+[node name="Fox" type="CharacterBody2D" node_paths=PackedStringArray("duck_check_area", "duck_touch_area", "fox_sprite")]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_q320a")
-duck_check_area = NodePath("duckling_check")
+duck_check_area = NodePath("duckling_detect")
+duck_touch_area = NodePath("duckling_touch")
+fox_sprite = NodePath("Sprite2D")
 
 [node name="fox_body" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ufccv")
+debug_color = Color(0.469416, 0.59069, 0, 0.42)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_3u0el")
 texture = ExtResource("2_ufccv")
 
-[node name="duckling_check" type="Area2D" parent="."]
+[node name="duckling_detect" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="duckling_check"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="duckling_detect"]
 shape = SubResource("CircleShape2D_35nom")
 debug_color = Color(0.881, 0, 0.821, 0.083)
+
+[node name="duckling_touch" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="duckling_touch"]
+shape = SubResource("CircleShape2D_3u0el")
