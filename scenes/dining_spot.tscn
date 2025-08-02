@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dqsmqaptl7i6m"]
 
-[ext_resource type="Script" uid="uid://06yggyfsy3yw" path="res://scenes/dining_spot.gd" id="1_0j5sv"]
+[ext_resource type="Script" uid="uid://06yggyfsy3yw" path="res://scripts/dining_spot.gd" id="1_0j5sv"]
 [ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="2_7wgey"]
 [ext_resource type="Texture2D" uid="uid://ddwq5cx535hpl" path="res://sprites/duck_juvenile.png" id="3_egrlp"]
 [ext_resource type="Texture2D" uid="uid://bu3esoh04iaux" path="res://sprites/barrel.png" id="3_tcw2n"]

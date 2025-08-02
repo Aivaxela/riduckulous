@@ -17,7 +17,7 @@ enum DuckGender {DRAKE, HEN}
 var parent: Path2D
 var loop_progress_tracker: float = 0.00
 var current_state: DuckState = DuckState.DUCKLING
-var current_gender: DuckGender = DuckGender.DRAKE
+var current_gender: DuckGender = DuckGender.HEN
 var previous_position: Vector2
 var date_completed: bool = false
 
@@ -90,10 +90,15 @@ func update_duck_state():
 			genderkerchief.scale = Vector2(1.0, 1.0)
 			duck_sprite.texture = duck_sprites[2]
 		DuckState.ADULT:
-			pass
+			if current_gender == DuckGender.DRAKE:
+				pass
+			elif current_gender == DuckGender.HEN:
+				get_node("/root/main").spawn_egg()
+				queue_free()
 
 func _on_area_entered(area: Area2D):
 	if area.name == "duck_capture_area" and !date_completed:
+		return
 		if current_gender == DuckGender.DRAKE and !area.get_parent().drake_spot_taken:
 			area.get_parent().drake_spot_taken = true
 			queue_free()
@@ -101,7 +106,7 @@ func _on_area_entered(area: Area2D):
 			area.get_parent().hen_spot_taken = true
 			queue_free()
 		return
-	elif area.name == "duckling_juvie_gate" or area.name == "juvie_adult_gate":
+	elif area.name == "duckling_juvie_gate" or area.name == "juvie_adult_gate" or area.name == "adult_egg_gate":
 		update_duck_state()
 
 func _on_quack_timer_timeout():
@@ -118,4 +123,4 @@ func _on_quack_timer_timeout():
 	var new_quack_label: Node2D = quack_label_scene.instantiate()
 	get_parent().add_child(new_quack_label)
 	new_quack_label.global_position = global_position
-	get_parent().spawn_duck()
+	# get_parent().spawn_duck()

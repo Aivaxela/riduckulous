@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 @export var boat_sprite: Sprite2D
-@export var speed: float = 200.0
-var acceleration: float = 4.0
+@export var egg_bomb: PackedScene
+@export var speed: float = 150.0
+var acceleration: float = 3.0
 
 
 func _physics_process(delta):
@@ -17,4 +18,16 @@ func _physics_process(delta):
 	
 	velocity = velocity.lerp(input_vector * speed, acceleration * delta)
 	move_and_slide()
+
+func _input(event):
+	if event.is_action_pressed("fire_egg"):
+		fire_egg()
+
+func fire_egg():
+	if get_node("/root/main").egg_count > 0:
+		get_node("/root/main").egg_count -= 1
+		var new_egg_bomb = egg_bomb.instantiate()
+		new_egg_bomb.global_position = global_position
+		new_egg_bomb.target_position = get_global_mouse_position()
+		get_tree().current_scene.add_child(new_egg_bomb)
 	

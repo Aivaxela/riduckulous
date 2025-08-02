@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwfvsdcjsjii1"]
+
+[ext_resource type="Texture2D" uid="uid://djpckvrad63o" path="res://sprites/ducking-egg.png" id="1_maxla"]
+[ext_resource type="Script" uid="uid://dfknvkh8bdaao" path="res://scripts/egg.gd" id="1_qlus4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34461"]
+radius = 7.0
+height = 18.0
+
+[node name="Egg" type="Node2D" node_paths=PackedStringArray("egg_area")]
+script = ExtResource("1_qlus4")
+egg_area = NodePath("Area2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_maxla")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_34461")

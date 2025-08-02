@@ -1,9 +1,11 @@
 extends Node
 
 @export var volume_slider: HSlider
+@export var egg_scene: PackedScene
 
 var drake_count: int = 0
 var hen_count: int = 0
+var egg_count: int = 10
 
 func _ready():
 	volume_slider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
@@ -34,6 +36,15 @@ func decide_duck_gender() -> String:
 		return "drake"
 	else:
 		return "hen"
+
+func spawn_egg():
+	var egg_spawn_points = get_tree().get_nodes_in_group("egg_spawn")
+	if egg_spawn_points.size() > 0:
+		var egg_spawn_point: Marker2D = egg_spawn_points[randi_range(0, egg_spawn_points.size() - 1)]
+		var egg: Node2D = egg_scene.instantiate()
+		var position_variation = Vector2(randf_range(-4, 4), randf_range(-4, 4))
+		egg.global_position = egg_spawn_point.global_position + position_variation
+		call_deferred("add_child", egg)
 
 func _on_vol_slider_value_changed(_value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume_slider.value)
