@@ -59,6 +59,7 @@ fire_egg={
 2d_physics/layer_3="fox_escape"
 2d_physics/layer_4="boat_boundaries"
 2d_physics/layer_5="dining_table_capture"
+2d_physics/layer_6="egg_bomb_explosion"
 
 [rendering]
 

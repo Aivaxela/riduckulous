@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var egg_sprite: Sprite2D
+@export var egg_bomb_explosion: PackedScene
 
 var target_position: Vector2
 var start_position: Vector2
@@ -24,6 +25,9 @@ func _physics_process(delta):
 	
 	var progress = current_time / travel_time
 	if progress >= 1.0:
+		var new_explosion = egg_bomb_explosion.instantiate()
+		new_explosion.global_position = global_position
+		get_tree().current_scene.add_child(new_explosion)
 		queue_free()
 		return
 	

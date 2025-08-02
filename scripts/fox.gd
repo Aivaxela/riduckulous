@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 enum FoxState {WANDERING, ATTACKING, FLEEING}
 @export var duck_check_area: Area2D
-@export var duck_touch_area: Area2D
+@export var fox_touch_area: Area2D
 @export var fox_sprite: Sprite2D
 var goal: Node2D
 var speed: float = 1000
@@ -14,7 +14,7 @@ var previous_position: Vector2
 
 func _ready():
 	duck_check_area.area_entered.connect(_on_area_entered)
-	duck_touch_area.area_entered.connect(_on_duck_touch_area_entered)
+	fox_touch_area.area_entered.connect(_on_fox_touch_area_entered)
 
 func _physics_process(delta):
 	update_sprite_direction()
@@ -58,7 +58,7 @@ func _on_area_entered(area: Area2D):
 	if duck_state == 0:
 		attack_duckling(area)
 
-func _on_duck_touch_area_entered(area: Area2D):
+func _on_fox_touch_area_entered(area: Area2D):
 	if (area.name == "duck_area" and area.get_parent().current_state == 0):
 		if current_state != FoxState.FLEEING:
 			area.get_parent().queue_free()
@@ -67,6 +67,8 @@ func _on_duck_touch_area_entered(area: Area2D):
 		get_parent().total_foxes -= 1
 		queue_free()
 		return
+	if (area.name == "egg_bomb_explosion"):
+		queue_free()
 
 func update_sprite_direction():
 	var movement_direction = global_position - previous_position
