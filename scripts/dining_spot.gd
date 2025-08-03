@@ -75,8 +75,10 @@ func _on_angry_release_timer_timeout():
 	wine_collected = false
 	bread_collected = false
 	release_timer_active = false
-	get_node("/root/main").drake_count -= 1
-	get_node("/root/main").hen_count -= 1
+	if drake_spot_taken:
+		get_node("/root/main").drake_count -= 1
+	if hen_spot_taken:
+		get_node("/root/main").hen_count -= 1
 	candles.emitting = false
 
 func _on_food_collect_area_entered(area: Area2D):
