@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqsmqaptl7i6m"]
+[gd_scene load_steps=14 format=3 uid="uid://dqsmqaptl7i6m"]
 
 [ext_resource type="Script" uid="uid://06yggyfsy3yw" path="res://scripts/dining_spot.gd" id="1_0j5sv"]
 [ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="2_7wgey"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bu3esoh04iaux" path="res://sprites/barrel.png" id="3_tcw2n"]
 [ext_resource type="Texture2D" uid="uid://ip7aotaobkd7" path="res://sprites/table.png" id="4_egrlp"]
 [ext_resource type="Texture2D" uid="uid://ds0jryu4kdaoc" path="res://sprites/genderkerchief.png" id="4_tglcy"]
+[ext_resource type="Texture2D" uid="uid://xymki6lr1vtr" path="res://sprites/wine_bomb.png" id="7_tglcy"]
+[ext_resource type="Texture2D" uid="uid://dmaopyfg713aq" path="res://sprites/bread_icon.png" id="8_lnym8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lnym8"]
 shader = ExtResource("2_7wgey")
@@ -20,18 +22,34 @@ shader_parameter/threshold = 0.1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qvve8"]
 size = Vector2(11, 137)
 
-[node name="dining_spot" type="Node2D" node_paths=PackedStringArray("drake_sprite", "hen_sprite", "release_timer")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_tcw2n"]
+radius = 18.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc645"]
+shader = ExtResource("2_7wgey")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[node name="dining_spot" type="Node2D" node_paths=PackedStringArray("drake_sprite", "hen_sprite", "bread_sprite", "wine_sprite", "release_timer", "angry_release_timer", "food_collect_area", "progress_bar")]
 script = ExtResource("1_0j5sv")
 drake_sprite = NodePath("drake")
 hen_sprite = NodePath("hen")
+bread_sprite = NodePath("bread")
+wine_sprite = NodePath("wine")
 release_timer = NodePath("release_timer")
+angry_release_timer = NodePath("angry_release_timer")
+food_collect_area = NodePath("food_collect_area")
+progress_bar = NodePath("ProgressBar")
 
 [node name="release_timer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
+[node name="angry_release_timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
 [node name="drake" type="Sprite2D" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_lnym8")
 position = Vector2(26, -17)
 texture = ExtResource("3_egrlp")
@@ -43,7 +61,6 @@ scale = Vector2(0.8, 0.8)
 texture = ExtResource("4_tglcy")
 
 [node name="hen" type="Sprite2D" parent="."]
-visible = false
 material = SubResource("ShaderMaterial_lnym8")
 position = Vector2(-15, -17)
 texture = ExtResource("3_egrlp")
@@ -83,3 +100,32 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="duck_capture_area"]
 position = Vector2(-20, -0.5)
 shape = SubResource("RectangleShape2D_qvve8")
+
+[node name="food_collect_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="food_collect_area"]
+position = Vector2(5, -6)
+shape = SubResource("CircleShape2D_tcw2n")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -7.0
+offset_top = -36.0
+offset_right = 18.0
+offset_bottom = -32.0
+max_value = 20.0
+value = 15.0
+show_percentage = false
+
+[node name="wine" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sc645")
+position = Vector2(-1, -13)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("7_tglcy")
+
+[node name="bread" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_sc645")
+position = Vector2(11, -11)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("8_lnym8")

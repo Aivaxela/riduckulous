@@ -16,6 +16,7 @@ func _on_area_input_event(_viewport, event, _shape_idx):
 			reset_cursor()
 			print("egg taken")
 			get_node("/root/main/boat").egg_count += 1
+			get_node("/root/main/boat").update_count_labels()
 			queue_free()
 
 func _on_mouse_entered():

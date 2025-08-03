@@ -217,9 +217,12 @@ position = Vector2(103, 88)
 [node name="fox_goal2" type="Marker2D" parent="fox_spawns"]
 position = Vector2(98, 226)
 
-[node name="boat" parent="." node_paths=PackedStringArray("selection_marker") instance=ExtResource("8_tipki")]
+[node name="boat" parent="." node_paths=PackedStringArray("selection_marker", "egg_count_label", "fine_wine_count_label", "bread_count_label") instance=ExtResource("8_tipki")]
 position = Vector2(345, 177)
 selection_marker = NodePath("../ui/selection")
+egg_count_label = NodePath("../ui/egg_count")
+fine_wine_count_label = NodePath("../ui/wine_count")
+bread_count_label = NodePath("../ui/bread_count")
 
 [node name="boat_boundaries" type="StaticBody2D" parent="."]
 position = Vector2(290, 171)
@@ -383,7 +386,7 @@ texture = ExtResource("17_0ld40")
 position = Vector2(38.9, -2.8)
 texture = ExtResource("18_gqmmt")
 
-[node name="Label" type="Label" parent="ui"]
+[node name="1" type="Label" parent="ui"]
 offset_left = -2.0
 offset_top = -6.5
 offset_right = 4.0
@@ -393,7 +396,7 @@ theme_override_fonts/font = ExtResource("5_tefeu")
 theme_override_font_sizes/font_size = 16
 text = "1"
 
-[node name="Label2" type="Label" parent="ui"]
+[node name="2" type="Label" parent="ui"]
 offset_left = 15.0
 offset_top = -6.0
 offset_right = 22.0
@@ -404,7 +407,7 @@ theme_override_font_sizes/font_size = 16
 text = "2
 "
 
-[node name="Label3" type="Label" parent="ui"]
+[node name="3" type="Label" parent="ui"]
 offset_left = 31.5
 offset_top = -6.5
 offset_right = 38.5
@@ -414,6 +417,36 @@ theme_override_fonts/font = ExtResource("5_tefeu")
 theme_override_font_sizes/font_size = 16
 text = "3
 "
+
+[node name="egg_count" type="Label" parent="ui"]
+offset_left = -2.5
+offset_top = -23.5
+offset_right = 11.5
+offset_bottom = -7.5
+theme_override_colors/font_color = Color(1, 0.22, 0.22, 0.811765)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "25"
+
+[node name="wine_count" type="Label" parent="ui"]
+offset_left = 15.0
+offset_top = -23.5
+offset_right = 29.0
+offset_bottom = -7.5
+theme_override_colors/font_color = Color(1, 0.22, 0.22, 0.811765)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "25"
+
+[node name="bread_count" type="Label" parent="ui"]
+offset_left = 31.5
+offset_top = -23.0
+offset_right = 45.5
+offset_bottom = -7.0
+theme_override_colors/font_color = Color(1, 0.22, 0.22, 0.811765)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "25"
 
 [node name="wine_marker" type="Marker2D" parent="ui"]
 position = Vector2(22, -7.5)

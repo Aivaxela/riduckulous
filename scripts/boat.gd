@@ -9,10 +9,13 @@ enum Selection {
 @export var boat_sprite: AnimatedSprite2D
 @export var egg_bomb: PackedScene
 @export var wine_bomb: PackedScene
-
+@export var bread_bomb: PackedScene
 @export var speed: float = 150.0
 @export var collect_area: Area2D
 @export var selection_marker: Sprite2D
+@export var egg_count_label: Label
+@export var fine_wine_count_label: Label
+@export var bread_count_label: Label
 
 var acceleration: float = 3.0
 var egg_count: int = 10
@@ -22,6 +25,9 @@ var selection: Selection = Selection.EGG
 
 func _ready():
 	collect_area.area_entered.connect(_on_area_entered)
+	egg_count_label.text = str(egg_count)
+	fine_wine_count_label.text = str(fine_wine_count)
+	bread_count_label.text = str(bread_count)
 
 func _physics_process(delta):
 	var input_vector = Vector2.ZERO
@@ -64,6 +70,7 @@ func fire_egg():
 		new_egg_bomb.global_position = global_position
 		new_egg_bomb.target_position = get_global_mouse_position()
 		get_tree().current_scene.add_child(new_egg_bomb)
+		update_count_labels()
 
 func fire_wine():
 	if fine_wine_count > 0:
@@ -72,12 +79,26 @@ func fire_wine():
 		new_wine_bomb.global_position = global_position
 		new_wine_bomb.target_position = get_global_mouse_position()
 		get_tree().current_scene.add_child(new_wine_bomb)
+		update_count_labels()
 
 func fire_bread():
-	pass
+	if bread_count > 0:
+		bread_count -= 1
+		var new_bread_bomb = bread_bomb.instantiate()
+		new_bread_bomb.global_position = global_position
+		new_bread_bomb.target_position = get_global_mouse_position()
+		get_tree().current_scene.add_child(new_bread_bomb)
+		update_count_labels()
+
+func update_count_labels():
+	egg_count_label.text = str(egg_count)
+	fine_wine_count_label.text = str(fine_wine_count)
+	bread_count_label.text = str(bread_count)
 
 func _on_area_entered(area: Area2D):
 	if area.name == "fine_wine_collection_area":
 		fine_wine_count += 1
+		update_count_labels()
 	if area.name == "bread_collection_area":
 		bread_count += 1
+		update_count_labels()
