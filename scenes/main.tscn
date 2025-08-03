@@ -1,21 +1,37 @@
-[gd_scene load_steps=22 format=3 uid="uid://c8m4t74vlhk3d"]
+[gd_scene load_steps=32 format=3 uid="uid://c8m4t74vlhk3d"]
 
 [ext_resource type="Texture2D" uid="uid://b5jgaheix05an" path="res://sprites/map.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://djvynpqfjhfet" path="res://scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bwfvsdcjsjii1" path="res://scenes/egg.tscn" id="2_choun"]
 [ext_resource type="Script" uid="uid://cljqsq1dj5esv" path="res://scripts/path.gd" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://6xcuunw2xy23" path="res://scenes/duck.tscn" id="3_tefeu"]
+[ext_resource type="PackedScene" uid="uid://j62l0o05ioam" path="res://scenes/duck_in_pond.tscn" id="3_ya4ey"]
 [ext_resource type="FontFile" uid="uid://b3548kydyy6v1" path="res://fonts/cutepixel/CutePixel.ttf" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://qqafx55os8ci" path="res://scripts/fox_spawns.gd" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dn2xyrnkb7grs" path="res://scenes/fox.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://d28hfsoit3yn1" path="res://scenes/boat.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://dqsmqaptl7i6m" path="res://scenes/dining_spot.tscn" id="9_85g3d"]
+[ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="12_a8y0u"]
+[ext_resource type="Texture2D" uid="uid://oly0bd4l6td4" path="res://sprites/wine_stand.png" id="13_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://uvrpeuesp3yt" path="res://sprites/bread_stand.png" id="14_jbj1t"]
 
 [sub_resource type="Curve2D" id="Curve2D_jyhfs"]
 _data = {
 "points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 33.9278, -16.5398, -33.9278, 16.5398, 399, 125, 18.075, -28.7966, -18.075, 28.7966, 346, 160, 26.294, -3.39278, -26.294, 3.39278, 288, 192, -13.9952, -19.5085, 13.9952, 19.5085, 262, 236, 27.1422, -44.5302, -27.1422, 44.5302, 286, 288, 6.78556, -36.8965, -6.78556, 36.8965, 270, 329, -16.5398, -23.7495, 16.5398, 23.7495, 307, 346, -17.388, -24.5977, 17.388, 24.5977, 319, 371, -33.9278, -5.93737, 33.9278, 5.93737, 371, 355, -26.294, -4.24098, 26.294, 4.24098, 426, 351, -57.6773, -3.81688, 57.6773, 3.81688, 505, 368, -53.4363, 15.6916, 53.4363, -15.6916, 590, 365, -32.2314, 22.0531, 32.2314, -22.0531, 664, 351, -18.2362, 19.9326, 18.2362, -19.9326, 710, 336, -2.96868, 37.3206, 2.96868, -37.3206, 720, 289, -0.848195, 34.3519, 0.848195, -34.3519, 701, 227, 8.05785, 45.3784, -8.05785, -45.3784, 745, 152, 45.3784, 13.147, -45.3784, -13.147, 652, 106, 30.535, 29.6868, -30.535, -29.6868, 534, 125, 0, 0, 0, 0, 478, 116)
 }
 point_count = 21
+
+[sub_resource type="Curve2D" id="Curve2D_a8y0u"]
+_data = {
+"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 33.9278, -16.5398, -33.9278, 16.5398, 377, 109, 18.075, -28.7966, -18.075, 28.7966, 351, 169, 26.294, -3.39278, -26.294, 3.39278, 274, 161, -13.9952, -19.5085, 13.9952, 19.5085, 276, 228, 27.1422, -44.5302, -27.1422, 44.5302, 304, 300, -16.5398, -23.7495, 16.5398, 23.7495, 334, 339, -33.9278, -5.93737, 33.9278, 5.93737, 371, 355, -26.294, -4.24098, 26.294, 4.24098, 427, 373, -57.6773, -3.81688, 57.6773, 3.81688, 505, 346, -53.4363, 15.6916, 53.4363, -15.6916, 607, 375, -32.2314, 22.0531, 32.2314, -22.0531, 654, 329, -18.2362, 19.9326, 18.2362, -19.9326, 728, 337, -2.96868, 37.3206, 2.96868, -37.3206, 720, 289, -0.848195, 34.3519, 0.848195, -34.3519, 715, 228, 8.05785, 45.3784, -8.05785, -45.3784, 732, 162, 45.3784, 13.147, -45.3784, -13.147, 660, 91, 30.535, 29.6868, -30.535, -29.6868, 547, 111, 0, 0, 0, 0, 478, 116)
+}
+point_count = 19
+
+[sub_resource type="Curve2D" id="Curve2D_jkv2x"]
+_data = {
+"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 36.0483, -15.6916, -36.0483, 15.6916, 388, 151, 18.075, -28.7966, -18.075, 28.7966, 293, 125, 20.3566, -22.9013, -20.3566, 22.9013, 256, 152, -13.9952, -19.5085, 13.9952, 19.5085, 288, 221, 27.1422, -44.5302, -27.1422, 44.5302, 288, 299, -36.0483, 7.63372, 36.0483, -7.63372, 325, 358, -33.9278, -5.93737, 33.9278, 5.93737, 376, 342, -26.294, -4.24098, 26.294, 4.24098, 425, 362, -57.6773, -3.81688, 57.6773, 3.81688, 505, 358, -53.4363, 15.6916, 53.4363, -15.6916, 596, 354, -32.2314, 22.0531, 32.2314, -22.0531, 659, 338, -18.2362, 19.9326, 18.2362, -19.9326, 700, 320, -2.96868, 37.3206, 2.96868, -37.3206, 729, 285, -0.848195, 34.3519, 0.848195, -34.3519, 727, 234, 8.05785, 45.3784, -8.05785, -45.3784, 717, 166, 45.3784, 13.147, -45.3784, -13.147, 651, 119, 40.9447, 11.1807, -40.9447, -11.1807, 608, 94, 40.482, 6.55423, -40.482, -6.55423, 543, 140, 0, 0, 0, 0, 478, 116)
+}
+point_count = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
 size = Vector2(79.1424, 12.4998)
@@ -47,14 +63,43 @@ size = Vector2(91.0347, 5.60947)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbj1t"]
 size = Vector2(38.7618, 5.60947)
 
-[node name="main" type="Node" node_paths=PackedStringArray("volume_slider")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_muem4"]
+shader = ExtResource("12_a8y0u")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
+shader = ExtResource("12_a8y0u")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a8y0u"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jkv2x"]
+radius = 18.0
+
+[node name="main" type="Node" node_paths=PackedStringArray("volume_slider", "duck_pond_spawn_point", "drake_count_label", "hen_count_label")]
 script = ExtResource("1_tbgi4")
 volume_slider = NodePath("volume/voume_slider")
 egg_scene = ExtResource("2_choun")
+pond_duck = ExtResource("3_ya4ey")
+duck_pond_spawn_point = NodePath("duck_pond_spawn_point")
+drake_count_label = NodePath("drakes")
+hen_count_label = NodePath("hens")
 
 [node name="map" type="Sprite2D" parent="."]
 texture = ExtResource("1_o5qli")
 centered = false
+
+[node name="duck_pond_spawn_point" type="Marker2D" parent="."]
+position = Vector2(262, 123)
+
+[node name="Egg" parent="." instance=ExtResource("2_choun")]
+position = Vector2(243, 59)
+
+[node name="Egg2" parent="." instance=ExtResource("2_choun")]
+position = Vector2(215, 48)
 
 [node name="volume" type="Label" parent="."]
 modulate = Color(1, 1, 1, 0.757)
@@ -86,13 +131,23 @@ duck = ExtResource("3_tefeu")
 duck_speed_min = 0.1
 duck_speed_max = 0.1
 
-[node name="duck" parent="path1" instance=ExtResource("3_tefeu")]
-position = Vector2(298.914, 339.335)
-rotation = 0.347969
-progress = 442.725
-speed = 0.15
-quack_timer_min = 0.5
-quack_timer_max = 1.0
+[node name="path2" type="Path2D" parent="." groups=["path"]]
+self_modulate = Color(100, 0, 0, 1)
+position = Vector2(-193, -58)
+curve = SubResource("Curve2D_a8y0u")
+script = ExtResource("2_sugp2")
+duck = ExtResource("3_tefeu")
+duck_speed_min = 0.1
+duck_speed_max = 0.1
+
+[node name="path3" type="Path2D" parent="." groups=["path"]]
+self_modulate = Color(0, 0, 1, 1)
+position = Vector2(-193, -58)
+curve = SubResource("Curve2D_jkv2x")
+script = ExtResource("2_sugp2")
+duck = ExtResource("3_tefeu")
+duck_speed_min = 0.1
+duck_speed_max = 0.1
 
 [node name="duckling_juvie_gate" type="Area2D" parent="."]
 position = Vector2(173, 293)
@@ -253,3 +308,45 @@ position = Vector2(-82, 9)
 
 [node name="spawn10" type="Marker2D" parent="egg_spawn_spots" groups=["egg_spawn"]]
 position = Vector2(-83, 29)
+
+[node name="wind_stand" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_muem4")
+position = Vector2(155, 188)
+texture = ExtResource("13_jkv2x")
+
+[node name="bread_stand" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_dp3eg")
+position = Vector2(475, 119)
+texture = ExtResource("14_jbj1t")
+
+[node name="drakes" type="Label" parent="."]
+offset_left = 2.0
+offset_top = -4.0
+offset_right = 59.0
+offset_bottom = 19.0
+text = "drakes:"
+
+[node name="hens" type="Label" parent="."]
+offset_left = 2.0
+offset_top = 11.0
+offset_right = 59.0
+offset_bottom = 60.0
+text = "hens:
+"
+horizontal_alignment = 2
+
+[node name="fine_wine_collect_area" type="Area2D" parent="."]
+position = Vector2(171, 192)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fine_wine_collect_area"]
+shape = SubResource("CircleShape2D_a8y0u")
+
+[node name="bread_collect_area" type="Area2D" parent="."]
+position = Vector2(449, 122)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bread_collect_area"]
+shape = SubResource("CircleShape2D_jkv2x")

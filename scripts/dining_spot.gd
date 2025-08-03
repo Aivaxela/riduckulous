@@ -33,3 +33,5 @@ func _on_release_timer_timeout():
 	release_path.spawn_duck("drake", release_point, speed)
 	await get_tree().create_timer(0.35).timeout
 	release_path.spawn_duck("hen", release_point, speed)
+	get_node("/root/main").drake_count -= 1
+	get_node("/root/main").hen_count -= 1

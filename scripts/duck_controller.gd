@@ -13,11 +13,11 @@ enum DuckGender {DRAKE, HEN}
 @export var duck_area: Area2D
 @export var quack_timer_min: float = 1
 @export var quack_timer_max: float = 5
+@export var current_gender: DuckGender = DuckGender.HEN
 
 var parent: Path2D
 var loop_progress_tracker: float = 0.00
 var current_state: DuckState = DuckState.DUCKLING
-var current_gender: DuckGender = DuckGender.HEN
 var previous_position: Vector2
 var date_completed: bool = false
 
@@ -30,45 +30,14 @@ func _ready():
 	quack_sfx.pitch_scale = randf_range(0.9, 1.5)
 	duck_sprite.texture = duck_sprites[0]
 
+
 func _process(_delta):
 	rotation = 0
 	update_sprite_direction()
-	
-	match current_state:
-		DuckState.DUCKLING:
-			process_duckling()
-		DuckState.JUVENILE:
-			process_juvenile()
-		DuckState.ADULT:
-			process_adult()
 			
 func _physics_process(delta):
-	match current_state:
-		DuckState.DUCKLING:
-			physics_process_duckling(delta)
-		DuckState.JUVENILE:
-			physics_process_juvenile(delta)
-		DuckState.ADULT:
-			physics_process_adult(delta)
-	
-func process_duckling():
-	pass
-	
-func process_juvenile():
-	pass
-	
-func process_adult():
-	pass
-	
-func physics_process_duckling(delta):
 	loop_movement(delta)
 	
-func physics_process_juvenile(delta):
-	loop_movement(delta)
-	
-func physics_process_adult(delta):
-	loop_movement(delta)
-
 func loop_movement(delta):
 	progress_ratio += delta * speed
 
@@ -91,15 +60,15 @@ func update_duck_state():
 			duck_sprite.texture = duck_sprites[2]
 		DuckState.ADULT:
 			if current_gender == DuckGender.DRAKE:
-				pass
+				remove_from_group("drake")
 			elif current_gender == DuckGender.HEN:
-				get_node("/root/main").spawn_egg()
+				remove_from_group("hen")
+				get_node("/root/main").spawn_egg(randi_range(1, 3))
 				get_node("/root/main").add_duck_to_pond("hen")
 				queue_free()
 
 func _on_area_entered(area: Area2D):
 	if area.name == "duck_capture_area" and !date_completed:
-		return
 		if current_gender == DuckGender.DRAKE and !area.get_parent().drake_spot_taken:
 			area.get_parent().drake_spot_taken = true
 			queue_free()
@@ -124,4 +93,3 @@ func _on_quack_timer_timeout():
 	var new_quack_label: Node2D = quack_label_scene.instantiate()
 	get_parent().add_child(new_quack_label)
 	new_quack_label.global_position = global_position
-	# get_parent().spawn_duck()

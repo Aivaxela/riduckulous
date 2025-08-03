@@ -7,6 +7,7 @@ enum FoxState {WANDERING, ATTACKING, FLEEING, EXPLODING}
 @export var animation_player: AnimationPlayer
 
 var goal: Node2D
+var varied_goal: Vector2
 var speed: float = 1000
 var goal_reached_threshold: float = 10.0
 var current_state: FoxState = FoxState.WANDERING
@@ -17,6 +18,14 @@ var previous_position: Vector2
 func _ready():
 	duck_check_area.area_entered.connect(_on_area_entered)
 	fox_touch_area.area_entered.connect(_on_fox_touch_area_entered)
+	if goal:
+		set_goal(goal)
+
+func set_goal(new_goal: Node2D):
+	goal = new_goal
+	if goal:
+		var variation = Vector2(randf_range(-16, 16), randf_range(-16, 16))
+		varied_goal = goal.global_position + variation
 
 func _physics_process(delta):
 	update_sprite_direction()
@@ -32,11 +41,11 @@ func _physics_process(delta):
 			explode(delta)
 
 func wander(delta):
-	if goal and global_position.distance_to(goal.global_position) <= goal_reached_threshold:
+	if goal and global_position.distance_to(varied_goal) <= goal_reached_threshold:
 		velocity = Vector2.ZERO
 		return
-	
-	var direction = (goal.global_position - global_position).normalized()
+
+	var direction = (varied_goal - global_position).normalized()
 	velocity = direction * speed * delta
 	move_and_slide()
 
@@ -70,6 +79,10 @@ func _on_area_entered(area: Area2D):
 func _on_fox_touch_area_entered(area: Area2D):
 	if (area.name == "duck_area" and area.get_parent().current_state == 0):
 		if current_state != FoxState.FLEEING:
+			if area.get_parent().current_gender == 0:
+				get_node("/root/main").drake_count -= 1
+			elif area.get_parent().current_gender == 1:
+				get_node("/root/main").hen_count -= 1
 			area.get_parent().queue_free()
 			current_state = FoxState.FLEEING
 	if (area.name == "fox_escape_area"):

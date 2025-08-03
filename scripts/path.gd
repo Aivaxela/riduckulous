@@ -31,6 +31,8 @@ func assign_gender(new_duck: PathFollow2D, gender: String = ""):
 		if (group == "drake"):
 			new_duck.genderkerchief.modulate = Color(0.5, 0.75, 1.2, 1.0)
 			new_duck.current_gender = 0
+			get_node("/root/main").drake_count += 1
 		elif (group == "hen"):
 			new_duck.genderkerchief.modulate = Color(1.1, 0.6, 1.0, 1.0)
 			new_duck.current_gender = 1
+			get_node("/root/main").hen_count += 1

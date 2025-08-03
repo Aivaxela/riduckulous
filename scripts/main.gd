@@ -4,6 +4,8 @@ extends Node
 @export var egg_scene: PackedScene
 @export var pond_duck: PackedScene
 @export var duck_pond_spawn_point: Marker2D
+@export var drake_count_label: Label
+@export var hen_count_label: Label
 
 var drake_count: int = 0
 var hen_count: int = 0
@@ -14,48 +16,34 @@ func _ready():
 	volume_slider.value_changed.connect(_on_vol_slider_value_changed)
 
 func _process(_delta):
-	drake_count = get_tree().get_nodes_in_group("drake").size()
-	hen_count = get_tree().get_nodes_in_group("hen").size()
+	drake_count_label.text = "Drakes: " + str(drake_count)
+	hen_count_label.text = "Hens: " + str(hen_count)
 
 func decide_duck_gender() -> String:
-	var total = drake_count + hen_count
-	
-	if total == 0:
-		return "drake" if randf() < 0.5 else "hen"
-	
-	var drake_ratio = float(drake_count) / total
-	var hen_ratio = float(hen_count) / total
-	
-	var drake_weight = hen_ratio * hen_ratio 
-	var hen_weight = drake_ratio * drake_ratio
-	
-	var total_weight = drake_weight + hen_weight
-	drake_weight /= total_weight
-	hen_weight /= total_weight
-	
-	var random_value = randf()
-	if random_value < drake_weight:
+	if drake_count < hen_count:
 		return "drake"
-	else:
+	elif hen_count < drake_count:
 		return "hen"
+	else:
+		return "drake" if randf() < 0.5 else "hen"
 
-func spawn_egg():
+func spawn_egg(amount: int):
 	var egg_spawn_points = get_tree().get_nodes_in_group("egg_spawn")
-	if egg_spawn_points.size() > 0:
-		var egg_spawn_point: Marker2D = egg_spawn_points[randi_range(0, egg_spawn_points.size() - 1)]
+	var egg_spawn_point: Marker2D = egg_spawn_points[randi_range(0, egg_spawn_points.size() - 1)]
+	for i in range(amount):
 		var egg: Node2D = egg_scene.instantiate()
 		var position_variation = Vector2(randf_range(-4, 4), randf_range(-4, 4))
 		egg.global_position = egg_spawn_point.global_position + position_variation
 		call_deferred("add_child", egg)
 
 func add_duck_to_pond(duck_type: String):
-	if duck_type == "drake":
-		drake_count += 1
-	elif duck_type == "hen":
-		hen_count += 1
-		var pond_duck_instance = pond_duck.instantiate()
-		pond_duck_instance.global_position = duck_pond_spawn_point.global_position
-		add_child(pond_duck_instance)
+	call_deferred("add_duck_deferred", duck_type)
+
+func add_duck_deferred(duck_type: String):
+	var new_duck = pond_duck.instantiate()
+	duck_pond_spawn_point.add_child(new_duck)
+	new_duck.global_position = duck_pond_spawn_point.global_position
+	new_duck.animated_sprite.play(duck_type)
 
 func _on_vol_slider_value_changed(_value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume_slider.value)

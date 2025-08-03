@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://j62l0o05ioam"]
+
+[ext_resource type="Texture2D" uid="uid://bkt1skh58xxn2" path="res://sprites/duck_in_pond_drake_anim.png" id="1_j4ma5"]
+[ext_resource type="Script" uid="uid://dlspwu6jt8ch0" path="res://scripts/duck_in_pond.gd" id="1_ngoyy"]
+[ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="2_asawg"]
+[ext_resource type="Texture2D" uid="uid://dhaqxp6fdif6t" path="res://sprites/duck_in_pond_hen_anim.png" id="3_asawg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j4ma5"]
+radius = 14.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f2ol2"]
+shader = ExtResource("2_asawg")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emiul"]
+atlas = ExtResource("1_j4ma5")
+region = Rect2(0, 0, 40, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngoyy"]
+atlas = ExtResource("1_j4ma5")
+region = Rect2(40, 0, 40, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f2ol2"]
+atlas = ExtResource("3_asawg")
+region = Rect2(0, 0, 40, 30)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_htv5r"]
+atlas = ExtResource("3_asawg")
+region = Rect2(40, 0, 40, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_asawg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emiul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngoyy")
+}],
+"loop": true,
+"name": &"drake",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f2ol2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_htv5r")
+}],
+"loop": true,
+"name": &"hen",
+"speed": 8.0
+}]
+
+[node name="duck_in_pond" type="CharacterBody2D" node_paths=PackedStringArray("animated_sprite")]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_ngoyy")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_j4ma5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_f2ol2")
+sprite_frames = SubResource("SpriteFrames_asawg")
+animation = &"drake"
+frame = 1
+frame_progress = 0.58267
