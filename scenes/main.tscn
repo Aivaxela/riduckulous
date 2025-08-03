@@ -437,11 +437,7 @@ offset_left = -2.5
 offset_top = -23.5
 offset_right = 11.5
 offset_bottom = -7.5
-<<<<<<< HEAD
 theme_override_colors/font_color = Color(0.876293, 0.84479, 0, 0.811765)
-=======
-theme_override_colors/font_color = Color(1, 0.22, 0.22, 0.811765)
->>>>>>> 6157037705795e4d29fd909664a5f672e0ef7f55
 theme_override_fonts/font = ExtResource("5_tefeu")
 theme_override_font_sizes/font_size = 16
 text = "25"
@@ -451,11 +447,7 @@ offset_left = 15.0
 offset_top = -23.5
 offset_right = 29.0
 offset_bottom = -7.5
-<<<<<<< HEAD
 theme_override_colors/font_color = Color(0.876293, 0.84479, 0, 0.811765)
-=======
-theme_override_colors/font_color = Color(1, 0.22, 0.22, 0.811765)
->>>>>>> 6157037705795e4d29fd909664a5f672e0ef7f55
 theme_override_fonts/font = ExtResource("5_tefeu")
 theme_override_font_sizes/font_size = 16
 text = "25"
@@ -465,11 +457,7 @@ offset_left = 31.5
 offset_top = -23.0
 offset_right = 45.5
 offset_bottom = -7.0
-<<<<<<< HEAD
 theme_override_colors/font_color = Color(0.876293, 0.84479, 0, 0.811765)
-=======
-theme_override_colors/font_color = Color(1, 0.22, 0.22, 0.811765)
->>>>>>> 6157037705795e4d29fd909664a5f672e0ef7f55
 theme_override_fonts/font = ExtResource("5_tefeu")
 theme_override_font_sizes/font_size = 16
 text = "25"

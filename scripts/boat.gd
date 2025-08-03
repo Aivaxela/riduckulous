@@ -96,7 +96,6 @@ func update_count_labels():
 	bread_count_label.text = str(bread_count)
 
 func _on_area_entered(area: Area2D):
-<<<<<<< HEAD
 	if area.name == "fine_wine_collect_area" and egg_count > 0:
 		egg_count -= 1
 		fine_wine_count += 2
@@ -104,11 +103,4 @@ func _on_area_entered(area: Area2D):
 	if area.name == "bread_collect_area" and egg_count > 0:
 		egg_count -= 1
 		bread_count += 2
-=======
-	if area.name == "fine_wine_collection_area":
-		fine_wine_count += 1
-		update_count_labels()
-	if area.name == "bread_collection_area":
-		bread_count += 1
->>>>>>> 6157037705795e4d29fd909664a5f672e0ef7f55
 		update_count_labels()
