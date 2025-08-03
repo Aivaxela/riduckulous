@@ -17,13 +17,13 @@ func assign_gender(new_duck: PathFollow2D, gender: String = ""):
 		new_duck.add_to_group("drake")
 		new_duck.genderkerchief.modulate = Color(0.5, 0.75, 1.2, 1.0)
 		new_duck.current_gender = 0 
-		new_duck.update_duck_state()
+		new_duck.update_duck_state("none")
 		new_duck.date_completed = true
 	elif gender == "hen":
 		new_duck.add_to_group("hen")
 		new_duck.genderkerchief.modulate = Color(1.1, 0.6, 1.0, 1.0)
 		new_duck.current_gender = 1
-		new_duck.update_duck_state()
+		new_duck.update_duck_state("none")
 		new_duck.date_completed = true
 	else:
 		var group = get_node("/root/main").decide_duck_gender()

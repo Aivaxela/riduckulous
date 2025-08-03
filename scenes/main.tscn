@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://c8m4t74vlhk3d"]
+[gd_scene load_steps=38 format=3 uid="uid://c8m4t74vlhk3d"]
 
 [ext_resource type="Texture2D" uid="uid://b5jgaheix05an" path="res://sprites/map.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://djvynpqfjhfet" path="res://scripts/main.gd" id="1_tbgi4"]
@@ -19,22 +19,23 @@
 [ext_resource type="Texture2D" uid="uid://g34bq8lifv05" path="res://sprites/selection.png" id="16_0ld40"]
 [ext_resource type="Texture2D" uid="uid://buce7s21gxibs" path="res://sprites/fine_wine_icon.png" id="17_0ld40"]
 [ext_resource type="Texture2D" uid="uid://dmaopyfg713aq" path="res://sprites/bread_icon.png" id="18_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://buslatpifnxe6" path="res://sprites/woods.png" id="20_gqmmt"]
 
 [sub_resource type="Curve2D" id="Curve2D_jyhfs"]
 _data = {
-"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 33.9278, -16.5398, -33.9278, 16.5398, 399, 125, 18.075, -28.7966, -18.075, 28.7966, 346, 160, 26.294, -3.39278, -26.294, 3.39278, 288, 192, -13.9952, -19.5085, 13.9952, 19.5085, 262, 236, 27.1422, -44.5302, -27.1422, 44.5302, 286, 288, 6.78556, -36.8965, -6.78556, 36.8965, 270, 329, -16.5398, -23.7495, 16.5398, 23.7495, 307, 346, -17.388, -24.5977, 17.388, 24.5977, 319, 371, -33.9278, -5.93737, 33.9278, 5.93737, 371, 355, -26.294, -4.24098, 26.294, 4.24098, 426, 351, -57.6773, -3.81688, 57.6773, 3.81688, 505, 368, -53.4363, 15.6916, 53.4363, -15.6916, 590, 365, -32.2314, 22.0531, 32.2314, -22.0531, 664, 351, -18.2362, 19.9326, 18.2362, -19.9326, 710, 336, -2.96868, 37.3206, 2.96868, -37.3206, 720, 289, -0.848195, 34.3519, 0.848195, -34.3519, 701, 227, 8.05785, 45.3784, -8.05785, -45.3784, 745, 152, 45.3784, 13.147, -45.3784, -13.147, 652, 106, 30.535, 29.6868, -30.535, -29.6868, 534, 125, 0, 0, 0, 0, 478, 116)
+"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 33.9278, -16.5398, -33.9278, 16.5398, 399, 125, 18.075, -28.7966, -18.075, 28.7966, 346, 160, 26.294, -3.39278, -26.294, 3.39278, 288, 192, -13.9952, -19.5085, 13.9952, 19.5085, 262, 236, 27.1422, -44.5302, -27.1422, 44.5302, 286, 288, 6.78556, -36.8965, -6.78556, 36.8965, 270, 329, -16.5398, -23.7495, 16.5398, 23.7495, 307, 346, -17.388, -24.5977, 17.388, 24.5977, 319, 371, -33.9278, -5.93737, 33.9278, 5.93737, 371, 355, -26.294, -4.24098, 26.294, 4.24098, 426, 351, -57.6773, -3.81688, 57.6773, 3.81688, 505, 368, -53.4363, 15.6916, 53.4363, -15.6916, 590, 365, -32.2314, 22.0531, 32.2314, -22.0531, 667, 357, -18.2362, 19.9326, 18.2362, -19.9326, 753, 361, -2.96868, 37.3206, 2.96868, -37.3206, 779, 304, -0.848195, 34.3519, 0.848195, -34.3519, 764, 230, 8.05785, 45.3784, -8.05785, -45.3784, 782, 149, 45.3784, 13.147, -45.3784, -13.147, 652, 106, 30.535, 29.6868, -30.535, -29.6868, 534, 125, 0, 0, 0, 0, 478, 116)
 }
 point_count = 21
 
 [sub_resource type="Curve2D" id="Curve2D_a8y0u"]
 _data = {
-"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 33.9278, -16.5398, -33.9278, 16.5398, 377, 109, 18.075, -28.7966, -18.075, 28.7966, 351, 169, 26.294, -3.39278, -26.294, 3.39278, 274, 161, -13.9952, -19.5085, 13.9952, 19.5085, 276, 228, 27.1422, -44.5302, -27.1422, 44.5302, 304, 300, -16.5398, -23.7495, 16.5398, 23.7495, 334, 339, -33.9278, -5.93737, 33.9278, 5.93737, 371, 355, -26.294, -4.24098, 26.294, 4.24098, 427, 373, -57.6773, -3.81688, 57.6773, 3.81688, 505, 346, -53.4363, 15.6916, 53.4363, -15.6916, 607, 375, -32.2314, 22.0531, 32.2314, -22.0531, 654, 329, -18.2362, 19.9326, 18.2362, -19.9326, 728, 337, -2.96868, 37.3206, 2.96868, -37.3206, 720, 289, -0.848195, 34.3519, 0.848195, -34.3519, 715, 228, 8.05785, 45.3784, -8.05785, -45.3784, 732, 162, 45.3784, 13.147, -45.3784, -13.147, 660, 91, 30.535, 29.6868, -30.535, -29.6868, 547, 111, 0, 0, 0, 0, 478, 116)
+"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 33.9278, -16.5398, -33.9278, 16.5398, 377, 109, 18.075, -28.7966, -18.075, 28.7966, 351, 169, 26.294, -3.39278, -26.294, 3.39278, 274, 161, -13.9952, -19.5085, 13.9952, 19.5085, 276, 228, 27.1422, -44.5302, -27.1422, 44.5302, 304, 300, -16.5398, -23.7495, 16.5398, 23.7495, 334, 339, -33.9278, -5.93737, 33.9278, 5.93737, 371, 355, -26.294, -4.24098, 26.294, 4.24098, 427, 373, -57.6773, -3.81688, 57.6773, 3.81688, 505, 346, -53.4363, 15.6916, 53.4363, -15.6916, 607, 375, -32.2314, 22.0531, 32.2314, -22.0531, 654, 329, -18.2362, 19.9326, 18.2362, -19.9326, 728, 337, -2.96868, 37.3206, 2.96868, -37.3206, 745, 290, -0.848195, 34.3519, 0.848195, -34.3519, 762, 226, 8.05785, 45.3784, -8.05785, -45.3784, 764, 145, 45.3784, 13.147, -45.3784, -13.147, 660, 91, 30.535, 29.6868, -30.535, -29.6868, 547, 111, 0, 0, 0, 0, 478, 116)
 }
 point_count = 19
 
 [sub_resource type="Curve2D" id="Curve2D_jkv2x"]
 _data = {
-"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 36.0483, -15.6916, -36.0483, 15.6916, 388, 151, 18.075, -28.7966, -18.075, 28.7966, 293, 125, 20.3566, -22.9013, -20.3566, 22.9013, 256, 152, -13.9952, -19.5085, 13.9952, 19.5085, 288, 221, 27.1422, -44.5302, -27.1422, 44.5302, 288, 299, -36.0483, 7.63372, 36.0483, -7.63372, 325, 358, -33.9278, -5.93737, 33.9278, 5.93737, 376, 342, -26.294, -4.24098, 26.294, 4.24098, 425, 362, -57.6773, -3.81688, 57.6773, 3.81688, 505, 358, -53.4363, 15.6916, 53.4363, -15.6916, 596, 354, -32.2314, 22.0531, 32.2314, -22.0531, 659, 338, -18.2362, 19.9326, 18.2362, -19.9326, 700, 320, -2.96868, 37.3206, 2.96868, -37.3206, 729, 285, -0.848195, 34.3519, 0.848195, -34.3519, 727, 234, 8.05785, 45.3784, -8.05785, -45.3784, 717, 166, 45.3784, 13.147, -45.3784, -13.147, 651, 119, 40.9447, 11.1807, -40.9447, -11.1807, 608, 94, 40.482, 6.55423, -40.482, -6.55423, 543, 140, 0, 0, 0, 0, 478, 116)
+"points": PackedVector2Array(54.7086, -16.9639, -54.7086, 16.9639, 478, 116, 36.0483, -15.6916, -36.0483, 15.6916, 388, 151, 18.075, -28.7966, -18.075, 28.7966, 293, 125, 20.3566, -22.9013, -20.3566, 22.9013, 256, 152, -13.9952, -19.5085, 13.9952, 19.5085, 288, 221, 27.1422, -44.5302, -27.1422, 44.5302, 288, 299, -36.0483, 7.63372, 36.0483, -7.63372, 325, 358, -33.9278, -5.93737, 33.9278, 5.93737, 376, 342, -26.294, -4.24098, 26.294, 4.24098, 425, 362, -57.6773, -3.81688, 57.6773, 3.81688, 505, 358, -53.4363, 15.6916, 53.4363, -15.6916, 596, 354, -32.2314, 22.0531, 32.2314, -22.0531, 659, 338, -18.2362, 19.9326, 18.2362, -19.9326, 700, 320, -2.96868, 37.3206, 2.96868, -37.3206, 729, 285, -0.848195, 34.3519, 0.848195, -34.3519, 764, 227, 8.05785, 45.3784, -8.05785, -45.3784, 754, 145, 45.3784, 13.147, -45.3784, -13.147, 651, 119, 40.9447, 11.1807, -40.9447, -11.1807, 608, 94, 40.482, 6.55423, -40.482, -6.55423, 540, 118, 0, 0, 0, 0, 478, 116)
 }
 point_count = 20
 
@@ -48,7 +49,7 @@ size = Vector2(64.5708, 12.4998)
 size = Vector2(35, 942.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
-size = Vector2(241, 4.5)
+size = Vector2(274, 4.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ya4ey"]
 size = Vector2(247.563, 4.5)
@@ -66,14 +67,9 @@ size = Vector2(83.0791, 4.74004)
 size = Vector2(91.0347, 5.60947)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jbj1t"]
-size = Vector2(38.7618, 5.60947)
+size = Vector2(72.1224, 5.60947)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_muem4"]
-shader = ExtResource("12_a8y0u")
-shader_parameter/outline_color = Vector4(0, 0, 0, 1)
-shader_parameter/threshold = 0.1
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
 shader = ExtResource("12_a8y0u")
 shader_parameter/outline_color = Vector4(0, 0, 0, 1)
 shader_parameter/threshold = 0.1
@@ -81,12 +77,17 @@ shader_parameter/threshold = 0.1
 [sub_resource type="CircleShape2D" id="CircleShape2D_a8y0u"]
 radius = 18.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dp3eg"]
+shader = ExtResource("12_a8y0u")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_jkv2x"]
 radius = 18.0
 
 [node name="main" type="Node" node_paths=PackedStringArray("volume_slider", "duck_pond_spawn_point", "drake_count_label", "hen_count_label")]
 script = ExtResource("1_tbgi4")
-volume_slider = NodePath("volume/voume_slider")
+volume_slider = NodePath("voume_slider")
 egg_scene = ExtResource("2_choun")
 pond_duck = ExtResource("3_ya4ey")
 duck_pond_spawn_point = NodePath("duck_pond_spawn_point")
@@ -100,32 +101,38 @@ centered = false
 [node name="duck_pond_spawn_point" type="Marker2D" parent="."]
 position = Vector2(262, 123)
 
+[node name="Egg4" parent="." instance=ExtResource("2_choun")]
+position = Vector2(215, 48)
+
+[node name="Egg2" parent="." instance=ExtResource("2_choun")]
+position = Vector2(221, 69)
+
 [node name="Egg" parent="." instance=ExtResource("2_choun")]
 position = Vector2(243, 59)
 
-[node name="Egg2" parent="." instance=ExtResource("2_choun")]
-position = Vector2(215, 48)
+[node name="Egg3" parent="." instance=ExtResource("2_choun")]
+position = Vector2(199, 66)
 
-[node name="volume" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0.757)
-offset_left = 501.0
-offset_top = 325.0
-offset_right = 605.0
-offset_bottom = 356.0
-theme_override_fonts/font = ExtResource("5_tefeu")
-theme_override_font_sizes/font_size = 20
-text = "volume"
-horizontal_alignment = 2
-
-[node name="voume_slider" type="HSlider" parent="volume"]
-layout_mode = 0
-offset_top = 18.0
-offset_right = 102.0
-offset_bottom = 34.0
+[node name="voume_slider" type="HSlider" parent="."]
+modulate = Color(1, 1, 1, 0.65)
+offset_left = 535.0
+offset_top = 345.0
+offset_right = 637.0
+offset_bottom = 361.0
 min_value = -80.0
 max_value = 10.0
 step = 5.0
 value = -20.0
+
+[node name="volume" type="Label" parent="voume_slider"]
+layout_mode = 0
+offset_top = -18.0
+offset_right = 104.0
+offset_bottom = 13.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 20
+text = "volume"
+horizontal_alignment = 2
 
 [node name="path1" type="Path2D" parent="." groups=["path"]]
 self_modulate = Color(100, 100, 0, 1)
@@ -133,8 +140,8 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_jyhfs")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_min = 0.1
-duck_speed_max = 0.1
+duck_speed_min = 0.04
+duck_speed_max = 0.07
 
 [node name="path2" type="Path2D" parent="." groups=["path"]]
 self_modulate = Color(100, 0, 0, 1)
@@ -142,8 +149,8 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_a8y0u")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_min = 0.1
-duck_speed_max = 0.1
+duck_speed_min = 0.04
+duck_speed_max = 0.07
 
 [node name="path3" type="Path2D" parent="." groups=["path"]]
 self_modulate = Color(0, 0, 1, 1)
@@ -151,8 +158,8 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_jkv2x")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_min = 0.1
-duck_speed_max = 0.1
+duck_speed_min = 0.04
+duck_speed_max = 0.07
 
 [node name="duckling_juvie_gate" type="Area2D" parent="."]
 position = Vector2(173, 293)
@@ -164,7 +171,7 @@ shape = SubResource("RectangleShape2D_tbgi4")
 debug_color = Color(1, 0.008, 0.042, 0.116)
 
 [node name="juvie_adult_gate" type="Area2D" parent="."]
-position = Vector2(521, 204)
+position = Vector2(560, 193)
 rotation = 1.22747
 collision_mask = 0
 
@@ -217,9 +224,12 @@ position = Vector2(103, 88)
 [node name="fox_goal2" type="Marker2D" parent="fox_spawns"]
 position = Vector2(98, 226)
 
-[node name="boat" parent="." node_paths=PackedStringArray("selection_marker") instance=ExtResource("8_tipki")]
+[node name="boat" parent="." node_paths=PackedStringArray("selection_marker", "egg_count_label", "fine_wine_count_label", "bread_count_label") instance=ExtResource("8_tipki")]
 position = Vector2(345, 177)
 selection_marker = NodePath("../ui/selection")
+egg_count_label = NodePath("../ui/egg_count")
+fine_wine_count_label = NodePath("../ui/wine_count")
+bread_count_label = NodePath("../ui/bread_count")
 
 [node name="boat_boundaries" type="StaticBody2D" parent="."]
 position = Vector2(290, 171)
@@ -227,37 +237,44 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="boat_boundaries"]
-position = Vector2(56.5, -76)
+position = Vector2(73, -76)
 shape = SubResource("RectangleShape2D_tipki")
+debug_color = Color(0.825526, 0.345255, 0.520386, 0.42)
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="boat_boundaries"]
 position = Vector2(25.7813, 76)
 shape = SubResource("RectangleShape2D_ya4ey")
+debug_color = Color(0.825526, 0.345255, 0.520386, 0.42)
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="boat_boundaries"]
 position = Vector2(-138.032, -6.04472)
 rotation = 1.57619
 shape = SubResource("RectangleShape2D_eb6dy")
+debug_color = Color(0.825526, 0.345255, 0.520386, 0.42)
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="boat_boundaries"]
-position = Vector2(177.803, -6.52065)
+position = Vector2(208, -6)
 rotation = 1.57619
 shape = SubResource("RectangleShape2D_trceg")
+debug_color = Color(0.825526, 0.345255, 0.520386, 0.42)
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="boat_boundaries"]
 position = Vector2(-115.397, 37.932)
 rotation = 1.05348
 shape = SubResource("RectangleShape2D_a8y0u")
+debug_color = Color(0.825526, 0.345255, 0.520386, 0.42)
 
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="boat_boundaries"]
 position = Vector2(-97.0419, -54.1748)
 rotation = 2.70409
 shape = SubResource("RectangleShape2D_jkv2x")
+debug_color = Color(0.825526, 0.345255, 0.520386, 0.42)
 
 [node name="CollisionShape2D9" type="CollisionShape2D" parent="boat_boundaries"]
-position = Vector2(160, 67)
+position = Vector2(175.109, 59.9329)
 rotation = 2.70409
 shape = SubResource("RectangleShape2D_jbj1t")
+debug_color = Color(0.825526, 0.345255, 0.520386, 0.42)
 
 [node name="dining_spots" type="Node2D" parent="."]
 
@@ -270,7 +287,7 @@ position = Vector2(402, 278)
 release_point = 0.55
 
 [node name="dining_spot3" parent="dining_spots" instance=ExtResource("9_85g3d")]
-position = Vector2(489, 315)
+position = Vector2(508, 315)
 release_point = 0.62
 
 [node name="dining_spot4" parent="dining_spots" instance=ExtResource("9_85g3d")]
@@ -278,7 +295,7 @@ position = Vector2(257, 267)
 release_point = 0.45
 
 [node name="dining_spot5" parent="dining_spots" instance=ExtResource("9_85g3d")]
-position = Vector2(530, 249)
+position = Vector2(568, 249)
 release_point = 0.67
 
 [node name="egg_spawn_spots" type="Node2D" parent="."]
@@ -314,15 +331,31 @@ position = Vector2(-82, 9)
 [node name="spawn10" type="Marker2D" parent="egg_spawn_spots" groups=["egg_spawn"]]
 position = Vector2(-83, 29)
 
-[node name="wind_stand" type="Sprite2D" parent="."]
+[node name="wine_stand" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_muem4")
 position = Vector2(155, 188)
 texture = ExtResource("13_jkv2x")
 
+[node name="fine_wine_collect_area" type="Area2D" parent="wine_stand"]
+position = Vector2(16, 4)
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="wine_stand/fine_wine_collect_area"]
+shape = SubResource("CircleShape2D_a8y0u")
+
 [node name="bread_stand" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_dp3eg")
-position = Vector2(475, 119)
+position = Vector2(513, 119)
 texture = ExtResource("14_jbj1t")
+
+[node name="bread_collect_area" type="Area2D" parent="bread_stand"]
+position = Vector2(-26, 3)
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bread_stand/bread_collect_area"]
+shape = SubResource("CircleShape2D_jkv2x")
 
 [node name="drakes" type="Label" parent="."]
 offset_left = 2.0
@@ -339,22 +372,6 @@ offset_bottom = 60.0
 text = "hens:
 "
 horizontal_alignment = 2
-
-[node name="fine_wine_collect_area" type="Area2D" parent="."]
-position = Vector2(171, 192)
-collision_layer = 64
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="fine_wine_collect_area"]
-shape = SubResource("CircleShape2D_a8y0u")
-
-[node name="bread_collect_area" type="Area2D" parent="."]
-position = Vector2(449, 122)
-collision_layer = 128
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bread_collect_area"]
-shape = SubResource("CircleShape2D_jkv2x")
 
 [node name="ui" type="Node2D" parent="."]
 position = Vector2(8, 346)
@@ -383,37 +400,67 @@ texture = ExtResource("17_0ld40")
 position = Vector2(38.9, -2.8)
 texture = ExtResource("18_gqmmt")
 
-[node name="Label" type="Label" parent="ui"]
+[node name="1" type="Label" parent="ui"]
 offset_left = -2.0
 offset_top = -6.5
 offset_right = 4.0
 offset_bottom = 9.5
-theme_override_colors/font_color = Color(1, 1, 0, 0.690196)
+theme_override_colors/font_color = Color(1, 1, 1, 0.690196)
 theme_override_fonts/font = ExtResource("5_tefeu")
 theme_override_font_sizes/font_size = 16
 text = "1"
 
-[node name="Label2" type="Label" parent="ui"]
+[node name="2" type="Label" parent="ui"]
 offset_left = 15.0
 offset_top = -6.0
 offset_right = 22.0
 offset_bottom = 29.0
-theme_override_colors/font_color = Color(1, 1, 0, 0.690196)
+theme_override_colors/font_color = Color(1, 1, 1, 0.690196)
 theme_override_fonts/font = ExtResource("5_tefeu")
 theme_override_font_sizes/font_size = 16
 text = "2
 "
 
-[node name="Label3" type="Label" parent="ui"]
+[node name="3" type="Label" parent="ui"]
 offset_left = 31.5
 offset_top = -6.5
 offset_right = 38.5
 offset_bottom = 28.5
-theme_override_colors/font_color = Color(1, 1, 0, 0.690196)
+theme_override_colors/font_color = Color(1, 1, 1, 0.690196)
 theme_override_fonts/font = ExtResource("5_tefeu")
 theme_override_font_sizes/font_size = 16
 text = "3
 "
+
+[node name="egg_count" type="Label" parent="ui"]
+offset_left = -2.5
+offset_top = -23.5
+offset_right = 11.5
+offset_bottom = -7.5
+theme_override_colors/font_color = Color(0.876293, 0.84479, 0, 0.811765)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "25"
+
+[node name="wine_count" type="Label" parent="ui"]
+offset_left = 15.0
+offset_top = -23.5
+offset_right = 29.0
+offset_bottom = -7.5
+theme_override_colors/font_color = Color(0.876293, 0.84479, 0, 0.811765)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "25"
+
+[node name="bread_count" type="Label" parent="ui"]
+offset_left = 31.5
+offset_top = -23.0
+offset_right = 45.5
+offset_bottom = -7.0
+theme_override_colors/font_color = Color(0.876293, 0.84479, 0, 0.811765)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "25"
 
 [node name="wine_marker" type="Marker2D" parent="ui"]
 position = Vector2(22, -7.5)
@@ -423,3 +470,7 @@ position = Vector2(39.5, -7.5)
 
 [node name="egg_marker" type="Marker2D" parent="ui"]
 position = Vector2(4.5, -7.5)
+
+[node name="woods" type="Sprite2D" parent="."]
+position = Vector2(576, 166)
+texture = ExtResource("20_gqmmt")

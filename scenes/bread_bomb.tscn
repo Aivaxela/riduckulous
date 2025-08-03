@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://1dy6mjdy7scy"]
+
+[ext_resource type="Script" uid="uid://dc4uleynmw7qy" path="res://scripts/bread_bomb.gd" id="1_y0m7x"]
+[ext_resource type="PackedScene" uid="uid://bp0e38fxiwqam" path="res://scenes/bread_bomb_explosion.tscn" id="2_yk4fp"]
+[ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="3_i561u"]
+[ext_resource type="Texture2D" uid="uid://dmaopyfg713aq" path="res://sprites/bread_icon.png" id="4_i561u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dbgn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8a6c"]
+shader = ExtResource("3_i561u")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[node name="bread_bomb" type="CharacterBody2D" node_paths=PackedStringArray("bread_sprite")]
+script = ExtResource("1_y0m7x")
+bread_sprite = NodePath("Sprite2D")
+bread_bomb_explosions = ExtResource("2_yk4fp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8dbgn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_b8a6c")
+texture = ExtResource("4_i561u")

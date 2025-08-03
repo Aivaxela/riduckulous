@@ -78,6 +78,7 @@ select_bread={
 2d_physics/layer_7="fine_wine_collect"
 2d_physics/layer_8="bread_collect"
 2d_physics/layer_9="food_collect_area"
+2d_physics/layer_10="drake_scare_area"
 
 [rendering]
 

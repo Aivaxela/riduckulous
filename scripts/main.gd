@@ -13,6 +13,8 @@ var hen_count: int = 0
 func _ready():
 	volume_slider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
 	volume_slider.value_changed.connect(_on_vol_slider_value_changed)
+	volume_slider.mouse_entered.connect(_on_volume_slider_mouse_entered)
+	volume_slider.mouse_exited.connect(_on_volume_slider_mouse_exited)
 
 func _process(_delta):
 	drake_count_label.text = "Drakes: " + str(drake_count)
@@ -28,8 +30,8 @@ func decide_duck_gender() -> String:
 
 func spawn_egg(amount: int):
 	var egg_spawn_points = get_tree().get_nodes_in_group("egg_spawn")
-	var egg_spawn_point: Marker2D = egg_spawn_points[randi_range(0, egg_spawn_points.size() - 1)]
 	for i in range(amount):
+		var egg_spawn_point: Marker2D = egg_spawn_points[randi_range(0, egg_spawn_points.size() - 1)]
 		var egg: Node2D = egg_scene.instantiate()
 		var position_variation = Vector2(randf_range(-4, 4), randf_range(-4, 4))
 		egg.global_position = egg_spawn_point.global_position + position_variation
@@ -46,3 +48,9 @@ func add_duck_deferred(duck_type: String):
 
 func _on_vol_slider_value_changed(_value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume_slider.value)
+
+func _on_volume_slider_mouse_entered():
+	volume_slider.modulate.a = 1.0
+
+func _on_volume_slider_mouse_exited():
+	volume_slider.modulate.a = 0.65

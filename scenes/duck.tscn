@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://6xcuunw2xy23"]
+[gd_scene load_steps=22 format=3 uid="uid://6xcuunw2xy23"]
 
 [ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="1_dcbfq"]
 [ext_resource type="Script" uid="uid://bs5n35x2t2lmh" path="res://scripts/duck_controller.gd" id="1_ircvx"]
@@ -8,31 +8,148 @@
 [ext_resource type="AudioStream" uid="uid://co2vx25c5iy1c" path="res://sfx/quack.wav" id="4_kls7j"]
 [ext_resource type="Texture2D" uid="uid://ddwq5cx535hpl" path="res://sprites/duck_juvenile.png" id="4_mwjdu"]
 [ext_resource type="Texture2D" uid="uid://ds0jryu4kdaoc" path="res://sprites/genderkerchief.png" id="6_eynlo"]
+[ext_resource type="Texture2D" uid="uid://b3etfi26fcwcf" path="res://sprites/duck_adult_attacking.png" id="7_aqhuf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dcbfq"]
 shader = ExtResource("1_dcbfq")
 shader_parameter/outline_color = Vector4(0, 0, 0, 1)
 shader_parameter/threshold = 0.1
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kkqwh"]
+shader = ExtResource("1_dcbfq")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8gupq"]
+atlas = ExtResource("7_aqhuf")
+region = Rect2(0, 0, 51, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cso76"]
+atlas = ExtResource("7_aqhuf")
+region = Rect2(51, 0, 51, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4hpwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8gupq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cso76")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_hwgnm"]
 radius = 5.0
 
-[node name="duck" type="PathFollow2D" node_paths=PackedStringArray("quack_sfx", "quack_timer", "duck_sprite", "genderkerchief", "duck_area")]
+[sub_resource type="Animation" id="Animation_dcbfq"]
+resource_name = "duckling"
+length = 0.2
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("duck_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 0.85), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_aqhuf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("duck_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_kkqwh"]
+resource_name = "juvie"
+length = 0.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("duck_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8gupq"]
+resource_name = "adult"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("duck_sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 0.9), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cso76"]
+_data = {
+&"RESET": SubResource("Animation_aqhuf"),
+&"adult": SubResource("Animation_8gupq"),
+&"duckling": SubResource("Animation_dcbfq"),
+&"juvie": SubResource("Animation_kkqwh")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aqhuf"]
+radius = 42.0
+
+[node name="duck" type="PathFollow2D" node_paths=PackedStringArray("quack_sfx", "quack_timer", "duck_sprite", "angry_drake_sprite", "genderkerchief", "duck_area", "animation_player", "drake_scare_area")]
 script = ExtResource("1_ircvx")
 speed = 0.01
 quack_sfx = NodePath("quack_sfx")
 quack_timer = NodePath("quack_timer")
 quack_label_scene = ExtResource("2_hwgnm")
 duck_sprite = NodePath("duck_sprite")
+angry_drake_sprite = NodePath("quacking_sprite")
 genderkerchief = NodePath("genderkerchief")
 duck_sprites = Array[CompressedTexture2D]([ExtResource("4_hwgnm"), ExtResource("4_mwjdu"), ExtResource("2_kls7j")])
 duck_area = NodePath("duck_area")
 quack_timer_min = 10.0
 quack_timer_max = 20.0
+animation_player = NodePath("AnimationPlayer")
+drake_scare_area = NodePath("drake_scare_area")
 
 [node name="duck_sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_dcbfq")
-texture = ExtResource("2_kls7j")
+texture = ExtResource("4_mwjdu")
+
+[node name="quacking_sprite" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_kkqwh")
+sprite_frames = SubResource("SpriteFrames_4hpwl")
+autoplay = "default"
+frame_progress = 0.275757
 
 [node name="genderkerchief" type="Sprite2D" parent="."]
 modulate = Color(0.318813, 0.653881, 1, 1)
@@ -52,3 +169,18 @@ collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="duck_area"]
 shape = SubResource("CircleShape2D_hwgnm")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cso76")
+}
+autoplay = "duckling"
+
+[node name="drake_scare_area" type="Area2D" parent="."]
+collision_layer = 512
+collision_mask = 0
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="drake_scare_area"]
+shape = SubResource("CircleShape2D_aqhuf")
+debug_color = Color(0.794, 0.406, 0.352, 0.083)

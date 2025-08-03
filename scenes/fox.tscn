@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dn2xyrnkb7grs"]
+[gd_scene load_steps=14 format=3 uid="uid://dn2xyrnkb7grs"]
 
 [ext_resource type="Script" uid="uid://car03d1e2hufj" path="res://scripts/fox.gd" id="1_q320a"]
 [ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="2_35nom"]
@@ -18,6 +18,57 @@ radius = 55.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3u0el"]
 radius = 11.0
+
+[sub_resource type="Animation" id="Animation_2g4xt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ufccv")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_brrv0"]
 resource_name = "death_anim"
@@ -86,61 +137,48 @@ tracks/4/keys = {
 "values": [Vector2(1, 1), Vector2(1.25, 1.25), Vector2(1, 1), Vector2(0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_2g4xt"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_3u0el"]
+resource_name = "wander"
+length = 0.5
+loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/path = NodePath("Sprite2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("2_ufccv")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [-0.174533, 0.174533, -0.174533]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+
+[sub_resource type="Animation" id="Animation_m5q2l"]
+resource_name = "fleeing"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1)]
+"values": [-0.174533, 0.174533, -0.174533]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m5q2l"]
 _data = {
 &"RESET": SubResource("Animation_2g4xt"),
-&"death_anim": SubResource("Animation_brrv0")
+&"death_anim": SubResource("Animation_brrv0"),
+&"fleeing": SubResource("Animation_m5q2l"),
+&"wander": SubResource("Animation_3u0el")
 }
 
 [node name="Fox" type="CharacterBody2D" node_paths=PackedStringArray("duck_check_area", "fox_touch_area", "fox_sprite", "animation_player")]
@@ -171,7 +209,7 @@ debug_color = Color(0.881, 0, 0.821, 0.083)
 
 [node name="fox_touch_area" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 38
+collision_mask = 550
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fox_touch_area"]
 shape = SubResource("CircleShape2D_3u0el")
@@ -180,3 +218,4 @@ shape = SubResource("CircleShape2D_3u0el")
 libraries = {
 &"": SubResource("AnimationLibrary_m5q2l")
 }
+autoplay = "wander"
