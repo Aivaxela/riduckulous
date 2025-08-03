@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8578tduhdvmi"]
+
+[ext_resource type="Script" uid="uid://crt5u0aqtv4js" path="res://scripts/wine_bomb.gd" id="1_ewbgp"]
+[ext_resource type="PackedScene" uid="uid://c1a1vm6xp5gpf" path="res://scenes/wine_bomb_explosion.tscn" id="2_mx1ws"]
+[ext_resource type="Texture2D" uid="uid://xymki6lr1vtr" path="res://sprites/wine_bomb.png" id="2_qjqob"]
+[ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="3_saw73"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8dbgn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8a6c"]
+shader = ExtResource("3_saw73")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
+
+[node name="wine_bomb" type="CharacterBody2D" node_paths=PackedStringArray("wine_sprite")]
+script = ExtResource("1_ewbgp")
+wine_sprite = NodePath("Sprite2D")
+wine_bomb_explosion = ExtResource("2_mx1ws")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8dbgn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_b8a6c")
+texture = ExtResource("2_qjqob")
