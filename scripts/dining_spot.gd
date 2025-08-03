@@ -8,8 +8,12 @@ extends Node2D
 @export var angry_release_timer: Timer
 @export var release_point: float
 @export var food_collect_area: Area2D
+<<<<<<< HEAD
 @export var progress_bar: TextureProgressBar
 @export var candles: GPUParticles2D
+=======
+@export var progress_bar: ProgressBar
+>>>>>>> 6157037705795e4d29fd909664a5f672e0ef7f55
 
 var drake_spot_taken: bool = false
 var hen_spot_taken: bool = false
@@ -23,6 +27,10 @@ func _ready():
 	release_timer.timeout.connect(_on_release_timer_timeout)
 	food_collect_area.area_entered.connect(_on_food_collect_area_entered)
 	angry_release_timer.timeout.connect(_on_angry_release_timer_timeout)
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 6157037705795e4d29fd909664a5f672e0ef7f55
 	progress_bar.max_value = angry_release_timer.wait_time
 	progress_bar.value = 0
 	progress_bar.visible = false
@@ -79,8 +87,21 @@ func _on_angry_release_timer_timeout():
 	get_node("/root/main").hen_count -= 1
 	candles.emitting = false
 
+func _on_angry_release_timer_timeout():
+	drake_spot_taken = false
+	hen_spot_taken = false
+	wine_collected = false
+	bread_collected = false
+	release_timer_active = false
+	get_node("/root/main").drake_count -= 1
+	get_node("/root/main").hen_count -= 1
+
 func _on_food_collect_area_entered(area: Area2D):
 	if (area.name == "wine_bomb_explosion" and (drake_spot_taken and hen_spot_taken)):
 		wine_collected = true
+<<<<<<< HEAD
 	elif (area.name == "bread_bomb_explosion" and (drake_spot_taken and hen_spot_taken)):
+=======
+	elif (area.name == "bread_bomb_explosion"):
+>>>>>>> 6157037705795e4d29fd909664a5f672e0ef7f55
 		bread_collected = true
