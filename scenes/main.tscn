@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://c8m4t74vlhk3d"]
+[gd_scene load_steps=51 format=3 uid="uid://c8m4t74vlhk3d"]
 
 [ext_resource type="Script" uid="uid://djvynpqfjhfet" path="res://scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bwfvsdcjsjii1" path="res://scenes/egg.tscn" id="2_choun"]
@@ -21,6 +21,12 @@
 [ext_resource type="Texture2D" uid="uid://dmaopyfg713aq" path="res://sprites/bread_icon.png" id="18_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://buslatpifnxe6" path="res://sprites/woods.png" id="20_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://cc22yogp3dx3m" path="res://sprites/bird.png" id="21_yc10j"]
+[ext_resource type="Texture2D" uid="uid://cvweme0xiwrxj" path="res://sprites/tut1.png" id="22_jscy8"]
+[ext_resource type="Texture2D" uid="uid://24sr52u0q0ra" path="res://sprites/tut2.png" id="23_y6deb"]
+[ext_resource type="Texture2D" uid="uid://cp0qsgqath072" path="res://sprites/tut3.png" id="24_og1vs"]
+[ext_resource type="Texture2D" uid="uid://cdlfyuswl10ig" path="res://sprites/tut8.png" id="25_2wyq8"]
+[ext_resource type="Texture2D" uid="uid://dwhn0k7dq3h5c" path="res://sprites/tut9.png" id="26_vxglm"]
+[ext_resource type="Texture2D" uid="uid://cuwm857fc6648" path="res://sprites/tut10.png" id="27_vxglm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc10j"]
 atlas = ExtResource("4_gqmmt")
@@ -132,7 +138,7 @@ initial_velocity_max = 35.0
 gravity = Vector3(0, 0, 0)
 anim_offset_max = 1.0
 
-[node name="main" type="Node" node_paths=PackedStringArray("volume_slider", "duck_pond_spawn_point", "drake_count_label", "hen_count_label")]
+[node name="main" type="Node" node_paths=PackedStringArray("volume_slider", "duck_pond_spawn_point", "drake_count_label", "hen_count_label", "tut_button", "tut_sprite1", "tut_sprite2", "tut_sprite3", "tut_sprite4", "tut_sprite5", "tut_sprite6")]
 script = ExtResource("1_tbgi4")
 volume_slider = NodePath("voume_slider")
 egg_scene = ExtResource("2_choun")
@@ -140,11 +146,18 @@ pond_duck = ExtResource("3_ya4ey")
 duck_pond_spawn_point = NodePath("duck_pond_spawn_point")
 drake_count_label = NodePath("drakes")
 hen_count_label = NodePath("hens")
+tut_button = NodePath("tutorial/continue")
+tut_sprite1 = NodePath("tutorial/1")
+tut_sprite2 = NodePath("tutorial/2")
+tut_sprite3 = NodePath("tutorial/3")
+tut_sprite4 = NodePath("tutorial/4")
+tut_sprite5 = NodePath("tutorial/5")
+tut_sprite6 = NodePath("tutorial/6")
 
 [node name="map" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y6deb")
 autoplay = "default"
-frame_progress = 0.679687
+frame_progress = 0.726524
 centered = false
 
 [node name="duck_pond_spawn_point" type="Marker2D" parent="."]
@@ -189,8 +202,11 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_jyhfs")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_min = 0.04
-duck_speed_max = 0.07
+duck_speed_max = 0.04
+
+[node name="duck" parent="path1" instance=ExtResource("3_tefeu")]
+position = Vector2(478, 116)
+rotation = 2.84092
 
 [node name="path2" type="Path2D" parent="." groups=["path"]]
 self_modulate = Color(100, 0, 0, 1)
@@ -198,8 +214,7 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_a8y0u")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_min = 0.04
-duck_speed_max = 0.07
+duck_speed_max = 0.04
 
 [node name="path3" type="Path2D" parent="." groups=["path"]]
 self_modulate = Color(0, 0, 1, 1)
@@ -207,8 +222,7 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_jkv2x")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_min = 0.04
-duck_speed_max = 0.07
+duck_speed_max = 0.04
 
 [node name="duckling_juvie_gate" type="Area2D" parent="."]
 position = Vector2(173, 293)
@@ -274,7 +288,7 @@ position = Vector2(103, 88)
 position = Vector2(98, 226)
 
 [node name="boat" parent="." node_paths=PackedStringArray("selection_marker", "egg_count_label", "fine_wine_count_label", "bread_count_label") instance=ExtResource("8_tipki")]
-position = Vector2(345, 177)
+position = Vector2(336, 112)
 selection_marker = NodePath("../ui/selection")
 egg_count_label = NodePath("../ui/egg_count")
 fine_wine_count_label = NodePath("../ui/wine_count")
@@ -531,3 +545,190 @@ amount = 20
 texture = ExtResource("21_yc10j")
 lifetime = 40.0
 process_material = SubResource("ParticleProcessMaterial_pm3ni")
+
+[node name="tutorial" type="Node2D" parent="."]
+
+[node name="1" type="Sprite2D" parent="tutorial"]
+texture = ExtResource("22_jscy8")
+centered = false
+
+[node name="Label" type="Label" parent="tutorial/1"]
+offset_left = 224.0
+offset_top = 40.0
+offset_right = 419.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Welcome to Riduckulous!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="tutorial/1"]
+offset_left = 128.0
+offset_top = 136.0
+offset_right = 523.0
+offset_bottom = 185.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "In this game, you will witness the life cycle of ducks
+and help them along the way."
+horizontal_alignment = 1
+
+[node name="2" type="Sprite2D" parent="tutorial"]
+visible = false
+texture = ExtResource("23_y6deb")
+centered = false
+
+[node name="Label" type="Label" parent="tutorial/2"]
+offset_left = 240.0
+offset_top = 176.0
+offset_right = 582.0
+offset_bottom = 225.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Ducks start as ducklings here, and will move
+counter quack-wise around the pond."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="tutorial/2"]
+offset_left = 288.0
+offset_top = 248.0
+offset_right = 630.0
+offset_bottom = 323.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Ducklings are in danger of being prey to
+foxes! You have two ways of dealing with
+this, which I'll explain shortly."
+
+[node name="3" type="Sprite2D" parent="tutorial"]
+visible = false
+texture = ExtResource("24_og1vs")
+centered = false
+
+[node name="Label" type="Label" parent="tutorial/3"]
+offset_left = 176.0
+offset_top = 32.0
+offset_right = 518.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Once a duckling safely reaches the south of the pond,
+it grows up and now needs to find a mate!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="tutorial/3"]
+offset_left = 176.0
+offset_top = 80.0
+offset_right = 518.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "How do ducks find mates you ask?
+By wining and dining obviously!"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="tutorial/3"]
+offset_left = 152.0
+offset_top = 128.0
+offset_right = 531.0
+offset_bottom = 182.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Once a pair of ducks sits at a table, you must quackly provide
+them with Wine and Bread so that their date goes swimmingly
+before they get angry and leave."
+horizontal_alignment = 1
+
+[node name="4" type="Sprite2D" parent="tutorial"]
+visible = false
+texture = ExtResource("25_2wyq8")
+centered = false
+
+[node name="Label" type="Label" parent="tutorial/4"]
+offset_left = 104.0
+offset_top = 80.0
+offset_right = 446.0
+offset_bottom = 129.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "After a successful date, the ducks will move onward
+to adulthood and into the \"magic\" forest..."
+horizontal_alignment = 1
+
+[node name="5" type="Sprite2D" parent="tutorial"]
+visible = false
+texture = ExtResource("26_vxglm")
+centered = false
+
+[node name="Label" type="Label" parent="tutorial/5"]
+offset_left = 128.0
+offset_top = 144.0
+offset_right = 470.0
+offset_bottom = 193.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Once back up top, male ducks will muster up their
+bravery and go around one more time scaring away foxes.
+
+Female ducks will lay eggs - which you can click on
+to hatch more ducklings - starting the loop anew!
+
+Once these things are done, the adult ducks will
+retire into the pond and hang out with you."
+horizontal_alignment = 1
+
+[node name="6" type="Sprite2D" parent="tutorial"]
+visible = false
+texture = ExtResource("27_vxglm")
+centered = false
+
+[node name="Label" type="Label" parent="tutorial/6"]
+offset_left = -8.0
+offset_right = 184.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "A few more things to note 
+before you waddle forth..."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="tutorial/6"]
+offset_left = 136.0
+offset_top = 320.0
+offset_right = 437.0
+offset_bottom = 374.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Your current stock of EGGS, WINE and BREAD.
+Press 1, 2 and 3 to cycle between the active item."
+
+[node name="Label3" type="Label" parent="tutorial/6"]
+offset_left = 288.0
+offset_top = 232.0
+offset_right = 480.0
+offset_bottom = 286.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Paddle to these spots to
+purchase WINE or BREAD.
+1 EGG = 2 WINES/BREADS."
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="tutorial/6"]
+offset_left = 200.0
+offset_top = 136.0
+offset_right = 520.0
+offset_bottom = 209.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Use WASD to move your boat.
+Press SPACE to throw the active item.
+Throw EGGS at foxes to scare them off.
+Throw WINE and BREAD at full tables to satify ducks."
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="tutorial/6"]
+offset_left = 264.0
+offset_top = 8.0
+offset_right = 584.0
+offset_bottom = 81.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "Left-click an EGG to hatch duckling.
+Right-click an EGG to collect it for later use."
+horizontal_alignment = 1
+
+[node name="continue" type="Button" parent="tutorial"]
+modulate = Color(1, 0.74902, 0, 1)
+offset_left = 536.0
+offset_top = 296.0
+offset_right = 627.0
+offset_bottom = 327.0
+theme_override_fonts/font = ExtResource("5_tefeu")
+text = "CONTINUE"

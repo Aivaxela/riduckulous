@@ -7,7 +7,22 @@ func _ready():
 	egg_area.mouse_entered.connect(_on_mouse_entered)
 	egg_area.mouse_exited.connect(_on_mouse_exited)
 
+
+func spawn_duck_on_random_path():
+	var paths = get_tree().get_nodes_in_group("path")
+	if paths.size() > 0:
+		var random_path = paths[randi_range(0, paths.size() - 1)]
+		random_path.spawn_duck()
+		queue_free()
+
+func reset_cursor():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	modulate = Color(1.0, 1.0, 1.0, 1.0)
+
 func _on_area_input_event(_viewport, event, _shape_idx):
+	if not get_node("/root/main").game_started:
+		return
+
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			reset_cursor()
@@ -24,14 +39,3 @@ func _on_mouse_entered():
 
 func _on_mouse_exited():
 	reset_cursor()
-
-func spawn_duck_on_random_path():
-	var paths = get_tree().get_nodes_in_group("path")
-	if paths.size() > 0:
-		var random_path = paths[randi_range(0, paths.size() - 1)]
-		random_path.spawn_duck()
-		queue_free()
-
-func reset_cursor():
-	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-	modulate = Color(1.0, 1.0, 1.0, 1.0)

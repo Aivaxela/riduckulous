@@ -30,6 +30,9 @@ func _ready():
 	bread_count_label.text = str(bread_count)
 
 func _physics_process(delta):
+	if not get_node("/root/main").game_started:
+		return
+		
 	var input_vector = Vector2.ZERO
 	input_vector.x = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 	input_vector.y = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
@@ -43,6 +46,9 @@ func _physics_process(delta):
 	move_and_slide()
 
 func _input(event):
+	if not get_node("/root/main").game_started:
+		return
+		
 	if event.is_action_pressed("boat_action"):
 		match selection:
 			Selection.EGG:

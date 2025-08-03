@@ -8,7 +8,7 @@ enum FoxState {WANDERING, ATTACKING, FLEEING, EXPLODING}
 
 var goal: Node2D
 var varied_goal: Vector2
-var speed: float = 1000
+var speed: float = 700
 var goal_reached_threshold: float = 10.0
 var current_state: FoxState = FoxState.WANDERING
 var target_area: Area2D = null
