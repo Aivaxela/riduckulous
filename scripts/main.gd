@@ -2,6 +2,8 @@ extends Node
 
 @export var volume_slider: HSlider
 @export var egg_scene: PackedScene
+@export var pond_duck: PackedScene
+@export var duck_pond_spawn_point: Marker2D
 
 var drake_count: int = 0
 var hen_count: int = 0
@@ -45,6 +47,15 @@ func spawn_egg():
 		var position_variation = Vector2(randf_range(-4, 4), randf_range(-4, 4))
 		egg.global_position = egg_spawn_point.global_position + position_variation
 		call_deferred("add_child", egg)
+
+func add_duck_to_pond(duck_type: String):
+	if duck_type == "drake":
+		drake_count += 1
+	elif duck_type == "hen":
+		hen_count += 1
+		var pond_duck_instance = pond_duck.instantiate()
+		pond_duck_instance.global_position = duck_pond_spawn_point.global_position
+		add_child(pond_duck_instance)
 
 func _on_vol_slider_value_changed(_value: float):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume_slider.value)

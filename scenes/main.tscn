@@ -129,8 +129,8 @@ fox_scene = ExtResource("7_o6xl0")
 fox_spawns = [NodePath("spawn"), NodePath("spawn2"), NodePath("spawn3")]
 fox_goals = [NodePath("fox_goal"), NodePath("fox_goal2")]
 fox_spawn_timer = NodePath("spawn_timer")
-fox_spawn_timer_min = 20
-fox_spawn_timer_max = 20
+fox_spawn_timer_min = 1
+fox_spawn_timer_max = 3
 
 [node name="spawn_timer" type="Timer" parent="fox_spawns"]
 

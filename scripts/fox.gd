@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
-enum FoxState {WANDERING, ATTACKING, FLEEING}
+enum FoxState {WANDERING, ATTACKING, FLEEING, EXPLODING}
 @export var duck_check_area: Area2D
 @export var fox_touch_area: Area2D
 @export var fox_sprite: Sprite2D
+@export var animation_player: AnimationPlayer
+
 var goal: Node2D
 var speed: float = 1000
 var goal_reached_threshold: float = 10.0
@@ -26,6 +28,8 @@ func _physics_process(delta):
 			attack(delta)
 		FoxState.FLEEING:
 			flee(delta)
+		FoxState.EXPLODING:
+			explode(delta)
 
 func wander(delta):
 	if goal and global_position.distance_to(goal.global_position) <= goal_reached_threshold:
@@ -49,6 +53,11 @@ func flee(delta):
 	velocity = Vector2.LEFT * speed * 4 * delta
 	move_and_slide()
 
+func explode(delta):
+	var random_speed_multiplier = randf_range(2, 5)
+	velocity = Vector2.LEFT * speed * random_speed_multiplier * delta
+	move_and_slide()
+
 func attack_duckling(area: Area2D):
 	current_state = FoxState.ATTACKING
 	target_area = area
@@ -68,9 +77,14 @@ func _on_fox_touch_area_entered(area: Area2D):
 		queue_free()
 		return
 	if (area.name == "egg_bomb_explosion"):
-		queue_free()
+		animation_player.play("death_anim")
+		get_parent().total_foxes -= 1
+		current_state = FoxState.EXPLODING
+		
 
 func update_sprite_direction():
+	if current_state == FoxState.EXPLODING:
+		return
 	var movement_direction = global_position - previous_position
 	if movement_direction.length() > 0.1:
 		fox_sprite.flip_h = movement_direction.x > 0

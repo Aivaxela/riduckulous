@@ -94,6 +94,7 @@ func update_duck_state():
 				pass
 			elif current_gender == DuckGender.HEN:
 				get_node("/root/main").spawn_egg()
+				get_node("/root/main").add_duck_to_pond("hen")
 				queue_free()
 
 func _on_area_entered(area: Area2D):

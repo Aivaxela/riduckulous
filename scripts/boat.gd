@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var boat_sprite: Sprite2D
+@export var boat_sprite: AnimatedSprite2D
 @export var egg_bomb: PackedScene
 @export var speed: float = 150.0
 var acceleration: float = 3.0

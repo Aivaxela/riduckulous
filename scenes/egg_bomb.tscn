@@ -1,10 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dwg5ylpyc6vpb"]
+[gd_scene load_steps=7 format=3 uid="uid://dwg5ylpyc6vpb"]
 
 [ext_resource type="Script" uid="uid://dexpa80jp104y" path="res://scripts/egg_bomb.gd" id="1_yy3qc"]
 [ext_resource type="PackedScene" uid="uid://dkav2qnvrayjq" path="res://scenes/egg_bomb_explosion.tscn" id="2_8dbgn"]
 [ext_resource type="Texture2D" uid="uid://djpckvrad63o" path="res://sprites/ducking-egg.png" id="2_s1gas"]
+[ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="3_8dbgn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8dbgn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b8a6c"]
+shader = ExtResource("3_8dbgn")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
 
 [node name="egg_bomb" type="CharacterBody2D" node_paths=PackedStringArray("egg_sprite")]
 script = ExtResource("1_yy3qc")
@@ -15,4 +21,5 @@ egg_bomb_explosion = ExtResource("2_8dbgn")
 shape = SubResource("CircleShape2D_8dbgn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_b8a6c")
 texture = ExtResource("2_s1gas")

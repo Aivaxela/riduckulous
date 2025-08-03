@@ -1,7 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwfvsdcjsjii1"]
+[gd_scene load_steps=6 format=3 uid="uid://bwfvsdcjsjii1"]
 
 [ext_resource type="Texture2D" uid="uid://djpckvrad63o" path="res://sprites/ducking-egg.png" id="1_maxla"]
 [ext_resource type="Script" uid="uid://dfknvkh8bdaao" path="res://scripts/egg.gd" id="1_qlus4"]
+[ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="2_34461"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ifgqj"]
+shader = ExtResource("2_34461")
+shader_parameter/outline_color = Vector4(0, 0, 0, 1)
+shader_parameter/threshold = 0.1
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_34461"]
 radius = 7.0
@@ -12,6 +18,7 @@ script = ExtResource("1_qlus4")
 egg_area = NodePath("Area2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ifgqj")
 texture = ExtResource("1_maxla")
 
 [node name="Area2D" type="Area2D" parent="."]
