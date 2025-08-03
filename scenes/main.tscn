@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c8m4t74vlhk3d"]
+[gd_scene load_steps=37 format=3 uid="uid://c8m4t74vlhk3d"]
 
 [ext_resource type="Texture2D" uid="uid://b5jgaheix05an" path="res://sprites/map.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://djvynpqfjhfet" path="res://scripts/main.gd" id="1_tbgi4"]
@@ -14,6 +14,11 @@
 [ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="12_a8y0u"]
 [ext_resource type="Texture2D" uid="uid://oly0bd4l6td4" path="res://sprites/wine_stand.png" id="13_jkv2x"]
 [ext_resource type="Texture2D" uid="uid://uvrpeuesp3yt" path="res://sprites/bread_stand.png" id="14_jbj1t"]
+[ext_resource type="Texture2D" uid="uid://cg7bhg32oh75x" path="res://sprites/icons_bg.png" id="15_dp3eg"]
+[ext_resource type="Texture2D" uid="uid://djpckvrad63o" path="res://sprites/ducking-egg.png" id="15_jkv2x"]
+[ext_resource type="Texture2D" uid="uid://g34bq8lifv05" path="res://sprites/selection.png" id="16_0ld40"]
+[ext_resource type="Texture2D" uid="uid://buce7s21gxibs" path="res://sprites/fine_wine_icon.png" id="17_0ld40"]
+[ext_resource type="Texture2D" uid="uid://dmaopyfg713aq" path="res://sprites/bread_icon.png" id="18_gqmmt"]
 
 [sub_resource type="Curve2D" id="Curve2D_jyhfs"]
 _data = {
@@ -40,7 +45,7 @@ size = Vector2(79.1424, 12.4998)
 size = Vector2(64.5708, 12.4998)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o6xl0"]
-size = Vector2(20, 435)
+size = Vector2(35, 942.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tipki"]
 size = Vector2(241, 4.5)
@@ -190,22 +195,21 @@ fox_spawn_timer_max = 3
 [node name="spawn_timer" type="Timer" parent="fox_spawns"]
 
 [node name="fox_escape_area" type="Area2D" parent="fox_spawns"]
-position = Vector2(-47, 173)
+position = Vector2(-102, 171)
 collision_layer = 4
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fox_spawns/fox_escape_area"]
-position = Vector2(-10, -1)
 shape = SubResource("RectangleShape2D_o6xl0")
 
 [node name="spawn" type="Marker2D" parent="fox_spawns"]
-position = Vector2(37, 11)
+position = Vector2(-28, -42)
 
 [node name="spawn2" type="Marker2D" parent="fox_spawns"]
-position = Vector2(14, 172)
+position = Vector2(-44, 176)
 
 [node name="spawn3" type="Marker2D" parent="fox_spawns"]
-position = Vector2(24, 342)
+position = Vector2(-32, 400)
 
 [node name="fox_goal" type="Marker2D" parent="fox_spawns"]
 position = Vector2(103, 88)
@@ -213,8 +217,9 @@ position = Vector2(103, 88)
 [node name="fox_goal2" type="Marker2D" parent="fox_spawns"]
 position = Vector2(98, 226)
 
-[node name="boat" parent="." instance=ExtResource("8_tipki")]
+[node name="boat" parent="." node_paths=PackedStringArray("selection_marker") instance=ExtResource("8_tipki")]
 position = Vector2(345, 177)
+selection_marker = NodePath("../ui/selection")
 
 [node name="boat_boundaries" type="StaticBody2D" parent="."]
 position = Vector2(290, 171)
@@ -350,3 +355,71 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bread_collect_area"]
 shape = SubResource("CircleShape2D_jkv2x")
+
+[node name="ui" type="Node2D" parent="."]
+position = Vector2(8, 346)
+scale = Vector2(2, 2)
+
+[node name="bg" type="Sprite2D" parent="ui"]
+position = Vector2(11.5, -2)
+texture = ExtResource("15_dp3eg")
+
+[node name="selection" type="Sprite2D" parent="ui"]
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(4.5, -7.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_0ld40")
+
+[node name="egg" type="Sprite2D" parent="ui"]
+position = Vector2(5.8, -3.10001)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("15_jkv2x")
+
+[node name="wine" type="Sprite2D" parent="ui"]
+position = Vector2(21.9, -2.8)
+texture = ExtResource("17_0ld40")
+
+[node name="bread" type="Sprite2D" parent="ui"]
+position = Vector2(38.9, -2.8)
+texture = ExtResource("18_gqmmt")
+
+[node name="Label" type="Label" parent="ui"]
+offset_left = -2.0
+offset_top = -6.5
+offset_right = 4.0
+offset_bottom = 9.5
+theme_override_colors/font_color = Color(1, 1, 0, 0.690196)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "1"
+
+[node name="Label2" type="Label" parent="ui"]
+offset_left = 15.0
+offset_top = -6.0
+offset_right = 22.0
+offset_bottom = 29.0
+theme_override_colors/font_color = Color(1, 1, 0, 0.690196)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "2
+"
+
+[node name="Label3" type="Label" parent="ui"]
+offset_left = 31.5
+offset_top = -6.5
+offset_right = 38.5
+offset_bottom = 28.5
+theme_override_colors/font_color = Color(1, 1, 0, 0.690196)
+theme_override_fonts/font = ExtResource("5_tefeu")
+theme_override_font_sizes/font_size = 16
+text = "3
+"
+
+[node name="wine_marker" type="Marker2D" parent="ui"]
+position = Vector2(22, -7.5)
+
+[node name="bread_marker" type="Marker2D" parent="ui"]
+position = Vector2(39.5, -7.5)
+
+[node name="egg_marker" type="Marker2D" parent="ui"]
+position = Vector2(4.5, -7.5)

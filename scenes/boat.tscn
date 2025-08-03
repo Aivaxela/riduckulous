@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d28hfsoit3yn1"]
+[gd_scene load_steps=11 format=3 uid="uid://d28hfsoit3yn1"]
 
 [ext_resource type="Script" uid="uid://cmtecmgm8k4j2" path="res://scripts/boat.gd" id="1_qyrje"]
 [ext_resource type="PackedScene" uid="uid://dwg5ylpyc6vpb" path="res://scenes/egg_bomb.tscn" id="2_lw6pk"]
@@ -36,19 +36,32 @@ animations = [{
 radius = 13.0
 height = 58.0
 
-[node name="boat" type="CharacterBody2D" node_paths=PackedStringArray("boat_sprite")]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_evv4r"]
+height = 48.0
+
+[node name="boat" type="CharacterBody2D" node_paths=PackedStringArray("boat_sprite", "collect_area")]
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_qyrje")
 boat_sprite = NodePath("AnimatedSprite2D")
 egg_bomb = ExtResource("2_lw6pk")
+collect_area = NodePath("collect_area")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_fsggc")
 sprite_frames = SubResource("SpriteFrames_bt8vh")
 autoplay = "default"
-frame_progress = 0.00814463
+frame_progress = 0.892922
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_qyrje")
+
+[node name="collect_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 192
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collect_area"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_evv4r")
+debug_color = Color(0.852079, 0.328832, 0.454304, 0.42)

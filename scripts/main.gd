@@ -9,7 +9,6 @@ extends Node
 
 var drake_count: int = 0
 var hen_count: int = 0
-var egg_count: int = 10
 
 func _ready():
 	volume_slider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
