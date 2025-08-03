@@ -16,7 +16,7 @@ func _ready():
 	fox_spawn_timer.start()
 
 func _on_fox_spawn_timer_timeout():
-	if total_foxes > 5:
+	if total_foxes > 3:
 		return
 
 	var fox: CharacterBody2D = fox_scene.instantiate()
