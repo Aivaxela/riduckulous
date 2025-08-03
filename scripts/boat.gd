@@ -18,9 +18,9 @@ enum Selection {
 @export var bread_count_label: Label
 
 var acceleration: float = 3.0
-var egg_count: int = 10
-var fine_wine_count: int = 10
-var bread_count: int = 10
+var egg_count: int = 0
+var fine_wine_count: int = 0
+var bread_count: int = 0
 var selection: Selection = Selection.EGG
 
 func _ready():

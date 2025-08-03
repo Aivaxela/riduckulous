@@ -1,11 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://c8m4t74vlhk3d"]
+[gd_scene load_steps=45 format=3 uid="uid://c8m4t74vlhk3d"]
 
-[ext_resource type="Texture2D" uid="uid://b5jgaheix05an" path="res://sprites/map.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://djvynpqfjhfet" path="res://scripts/main.gd" id="1_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://bwfvsdcjsjii1" path="res://scenes/egg.tscn" id="2_choun"]
 [ext_resource type="Script" uid="uid://cljqsq1dj5esv" path="res://scripts/path.gd" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://6xcuunw2xy23" path="res://scenes/duck.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://j62l0o05ioam" path="res://scenes/duck_in_pond.tscn" id="3_ya4ey"]
+[ext_resource type="Texture2D" uid="uid://d24wku1mi0bhy" path="res://sprites/map_animated.png" id="4_gqmmt"]
 [ext_resource type="FontFile" uid="uid://b3548kydyy6v1" path="res://fonts/cutepixel/CutePixel.ttf" id="5_tefeu"]
 [ext_resource type="Script" uid="uid://qqafx55os8ci" path="res://scripts/fox_spawns.gd" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://dn2xyrnkb7grs" path="res://scenes/fox.tscn" id="7_o6xl0"]
@@ -20,6 +20,36 @@
 [ext_resource type="Texture2D" uid="uid://buce7s21gxibs" path="res://sprites/fine_wine_icon.png" id="17_0ld40"]
 [ext_resource type="Texture2D" uid="uid://dmaopyfg713aq" path="res://sprites/bread_icon.png" id="18_gqmmt"]
 [ext_resource type="Texture2D" uid="uid://buslatpifnxe6" path="res://sprites/woods.png" id="20_gqmmt"]
+[ext_resource type="Texture2D" uid="uid://cc22yogp3dx3m" path="res://sprites/bird.png" id="21_yc10j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yc10j"]
+atlas = ExtResource("4_gqmmt")
+region = Rect2(0, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jscy8"]
+atlas = ExtResource("4_gqmmt")
+region = Rect2(640, 0, 640, 360)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pm3ni"]
+atlas = ExtResource("4_gqmmt")
+region = Rect2(1280, 0, 640, 360)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y6deb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc10j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jscy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pm3ni")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
 
 [sub_resource type="Curve2D" id="Curve2D_jyhfs"]
 _data = {
@@ -85,6 +115,23 @@ shader_parameter/threshold = 0.1
 [sub_resource type="CircleShape2D" id="CircleShape2D_jkv2x"]
 radius = 18.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jscy8"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pm3ni"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 250, 1)
+direction = Vector3(-1, 0, 0)
+spread = 5.0
+initial_velocity_min = 25.0
+initial_velocity_max = 35.0
+gravity = Vector3(0, 0, 0)
+anim_offset_max = 1.0
+
 [node name="main" type="Node" node_paths=PackedStringArray("volume_slider", "duck_pond_spawn_point", "drake_count_label", "hen_count_label")]
 script = ExtResource("1_tbgi4")
 volume_slider = NodePath("voume_slider")
@@ -94,8 +141,10 @@ duck_pond_spawn_point = NodePath("duck_pond_spawn_point")
 drake_count_label = NodePath("drakes")
 hen_count_label = NodePath("hens")
 
-[node name="map" type="Sprite2D" parent="."]
-texture = ExtResource("1_o5qli")
+[node name="map" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y6deb")
+autoplay = "default"
+frame_progress = 0.679687
 centered = false
 
 [node name="duck_pond_spawn_point" type="Marker2D" parent="."]
@@ -196,8 +245,8 @@ fox_scene = ExtResource("7_o6xl0")
 fox_spawns = [NodePath("spawn"), NodePath("spawn2"), NodePath("spawn3")]
 fox_goals = [NodePath("fox_goal"), NodePath("fox_goal2")]
 fox_spawn_timer = NodePath("spawn_timer")
-fox_spawn_timer_min = 1
-fox_spawn_timer_max = 3
+fox_spawn_timer_min = 5
+fox_spawn_timer_max = 10
 
 [node name="spawn_timer" type="Timer" parent="fox_spawns"]
 
@@ -474,3 +523,11 @@ position = Vector2(4.5, -7.5)
 [node name="woods" type="Sprite2D" parent="."]
 position = Vector2(576, 166)
 texture = ExtResource("20_gqmmt")
+
+[node name="birds" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_jscy8")
+position = Vector2(651, 101)
+amount = 20
+texture = ExtResource("21_yc10j")
+lifetime = 40.0
+process_material = SubResource("ParticleProcessMaterial_pm3ni")
