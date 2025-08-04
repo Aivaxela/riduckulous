@@ -138,14 +138,12 @@ initial_velocity_max = 35.0
 gravity = Vector3(0, 0, 0)
 anim_offset_max = 1.0
 
-[node name="main" type="Node" node_paths=PackedStringArray("volume_slider", "duck_pond_spawn_point", "drake_count_label", "hen_count_label", "tut_button", "tut_sprite1", "tut_sprite2", "tut_sprite3", "tut_sprite4", "tut_sprite5", "tut_sprite6")]
+[node name="main" type="Node" node_paths=PackedStringArray("volume_slider", "duck_pond_spawn_point", "tut_button", "tut_sprite1", "tut_sprite2", "tut_sprite3", "tut_sprite4", "tut_sprite5", "tut_sprite6", "game_timer")]
 script = ExtResource("1_tbgi4")
 volume_slider = NodePath("voume_slider")
 egg_scene = ExtResource("2_choun")
 pond_duck = ExtResource("3_ya4ey")
 duck_pond_spawn_point = NodePath("duck_pond_spawn_point")
-drake_count_label = NodePath("drakes")
-hen_count_label = NodePath("hens")
 tut_button = NodePath("tutorial/continue")
 tut_sprite1 = NodePath("tutorial/1")
 tut_sprite2 = NodePath("tutorial/2")
@@ -153,6 +151,10 @@ tut_sprite3 = NodePath("tutorial/3")
 tut_sprite4 = NodePath("tutorial/4")
 tut_sprite5 = NodePath("tutorial/5")
 tut_sprite6 = NodePath("tutorial/6")
+game_timer = NodePath("game_timer")
+
+[node name="game_timer" type="Timer" parent="."]
+wait_time = 480.0
 
 [node name="map" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_y6deb")
@@ -163,6 +165,9 @@ centered = false
 [node name="duck_pond_spawn_point" type="Marker2D" parent="."]
 position = Vector2(262, 123)
 
+[node name="Egg5" parent="." instance=ExtResource("2_choun")]
+position = Vector2(197, 86)
+
 [node name="Egg4" parent="." instance=ExtResource("2_choun")]
 position = Vector2(215, 48)
 
@@ -171,6 +176,9 @@ position = Vector2(221, 69)
 
 [node name="Egg" parent="." instance=ExtResource("2_choun")]
 position = Vector2(243, 59)
+
+[node name="Egg6" parent="." instance=ExtResource("2_choun")]
+position = Vector2(237, 43)
 
 [node name="Egg3" parent="." instance=ExtResource("2_choun")]
 position = Vector2(199, 66)
@@ -202,11 +210,8 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_jyhfs")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_max = 0.04
-
-[node name="duck" parent="path1" instance=ExtResource("3_tefeu")]
-position = Vector2(478, 116)
-rotation = 2.84092
+duck_speed_min = 0.03
+duck_speed_max = 0.06
 
 [node name="path2" type="Path2D" parent="." groups=["path"]]
 self_modulate = Color(100, 0, 0, 1)
@@ -214,7 +219,8 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_a8y0u")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_max = 0.04
+duck_speed_min = 0.03
+duck_speed_max = 0.06
 
 [node name="path3" type="Path2D" parent="." groups=["path"]]
 self_modulate = Color(0, 0, 1, 1)
@@ -222,7 +228,8 @@ position = Vector2(-193, -58)
 curve = SubResource("Curve2D_jkv2x")
 script = ExtResource("2_sugp2")
 duck = ExtResource("3_tefeu")
-duck_speed_max = 0.04
+duck_speed_min = 0.03
+duck_speed_max = 0.06
 
 [node name="duckling_juvie_gate" type="Area2D" parent="."]
 position = Vector2(173, 293)
@@ -288,7 +295,7 @@ position = Vector2(103, 88)
 position = Vector2(98, 226)
 
 [node name="boat" parent="." node_paths=PackedStringArray("selection_marker", "egg_count_label", "fine_wine_count_label", "bread_count_label") instance=ExtResource("8_tipki")]
-position = Vector2(336, 112)
+position = Vector2(205, 156)
 selection_marker = NodePath("../ui/selection")
 egg_count_label = NodePath("../ui/egg_count")
 fine_wine_count_label = NodePath("../ui/wine_count")
@@ -396,11 +403,11 @@ position = Vector2(-83, 29)
 
 [node name="wine_stand" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_muem4")
-position = Vector2(155, 188)
+position = Vector2(373, 67)
 texture = ExtResource("13_jkv2x")
 
 [node name="fine_wine_collect_area" type="Area2D" parent="wine_stand"]
-position = Vector2(16, 4)
+position = Vector2(0, 32)
 collision_layer = 64
 collision_mask = 0
 
@@ -419,22 +426,6 @@ collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bread_stand/bread_collect_area"]
 shape = SubResource("CircleShape2D_jkv2x")
-
-[node name="drakes" type="Label" parent="."]
-offset_left = 2.0
-offset_top = -4.0
-offset_right = 59.0
-offset_bottom = 19.0
-text = "drakes:"
-
-[node name="hens" type="Label" parent="."]
-offset_left = 2.0
-offset_top = 11.0
-offset_right = 59.0
-offset_bottom = 60.0
-text = "hens:
-"
-horizontal_alignment = 2
 
 [node name="ui" type="Node2D" parent="."]
 position = Vector2(8, 346)
@@ -462,38 +453,6 @@ texture = ExtResource("17_0ld40")
 [node name="bread" type="Sprite2D" parent="ui"]
 position = Vector2(38.9, -2.8)
 texture = ExtResource("18_gqmmt")
-
-[node name="1" type="Label" parent="ui"]
-offset_left = -2.0
-offset_top = -6.5
-offset_right = 4.0
-offset_bottom = 9.5
-theme_override_colors/font_color = Color(1, 1, 1, 0.690196)
-theme_override_fonts/font = ExtResource("5_tefeu")
-theme_override_font_sizes/font_size = 16
-text = "1"
-
-[node name="2" type="Label" parent="ui"]
-offset_left = 15.0
-offset_top = -6.0
-offset_right = 22.0
-offset_bottom = 29.0
-theme_override_colors/font_color = Color(1, 1, 1, 0.690196)
-theme_override_fonts/font = ExtResource("5_tefeu")
-theme_override_font_sizes/font_size = 16
-text = "2
-"
-
-[node name="3" type="Label" parent="ui"]
-offset_left = 31.5
-offset_top = -6.5
-offset_right = 38.5
-offset_bottom = 28.5
-theme_override_colors/font_color = Color(1, 1, 1, 0.690196)
-theme_override_fonts/font = ExtResource("5_tefeu")
-theme_override_font_sizes/font_size = 16
-text = "3
-"
 
 [node name="egg_count" type="Label" parent="ui"]
 offset_left = -2.5
@@ -715,13 +674,15 @@ Throw WINE and BREAD at full tables to satify ducks."
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="tutorial/6"]
-offset_left = 264.0
-offset_top = 8.0
-offset_right = 584.0
-offset_bottom = 81.0
+offset_left = -36.0
+offset_top = 48.0
+offset_right = 284.0
+offset_bottom = 121.0
 theme_override_fonts/font = ExtResource("5_tefeu")
-text = "Left-click an EGG to hatch duckling.
-Right-click an EGG to collect it for later use."
+text = "Left-click an EGG to 
+hatch duckling.
+Right-click an EGG to 
+collect it for later use."
 horizontal_alignment = 1
 
 [node name="continue" type="Button" parent="tutorial"]

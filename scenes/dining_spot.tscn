@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dqsmqaptl7i6m"]
+[gd_scene load_steps=21 format=3 uid="uid://dqsmqaptl7i6m"]
 
 [ext_resource type="Script" uid="uid://06yggyfsy3yw" path="res://scripts/dining_spot.gd" id="1_0j5sv"]
 [ext_resource type="Shader" uid="uid://d3rflte2icji" path="res://shaders/duck.gdshader" id="2_7wgey"]
@@ -7,10 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bu3esoh04iaux" path="res://sprites/barrel.png" id="3_tcw2n"]
 [ext_resource type="Texture2D" uid="uid://ip7aotaobkd7" path="res://sprites/table.png" id="4_egrlp"]
 [ext_resource type="Texture2D" uid="uid://ds0jryu4kdaoc" path="res://sprites/genderkerchief.png" id="4_tglcy"]
-[ext_resource type="Texture2D" uid="uid://d1d6sfviwpggg" path="res://sprites/pbar_outline.png" id="7_sc645"]
 [ext_resource type="Texture2D" uid="uid://xymki6lr1vtr" path="res://sprites/wine_bomb.png" id="7_tglcy"]
 [ext_resource type="Texture2D" uid="uid://dmaopyfg713aq" path="res://sprites/bread_icon.png" id="8_lnym8"]
-[ext_resource type="Texture2D" uid="uid://dbh3nrwckp7yc" path="res://sprites/pbar_fill.png" id="8_ubbn0"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_amirq"]
 particles_animation = true
@@ -63,24 +61,18 @@ shader = ExtResource("2_7wgey")
 shader_parameter/outline_color = Vector4(0, 0, 0, 1)
 shader_parameter/threshold = 0.1
 
-[node name="dining_spot" type="Node2D" node_paths=PackedStringArray("drake_sprite", "hen_sprite", "bread_sprite", "wine_sprite", "release_timer", "angry_release_timer", "food_collect_area", "progress_bar", "candles")]
+[node name="dining_spot" type="Node2D" node_paths=PackedStringArray("drake_sprite", "hen_sprite", "bread_sprite", "wine_sprite", "release_timer", "food_collect_area", "candles")]
 script = ExtResource("1_0j5sv")
 drake_sprite = NodePath("drake")
 hen_sprite = NodePath("hen")
 bread_sprite = NodePath("bread")
 wine_sprite = NodePath("wine")
 release_timer = NodePath("release_timer")
-angry_release_timer = NodePath("angry_release_timer")
 food_collect_area = NodePath("food_collect_area")
-progress_bar = NodePath("TextureProgressBar")
 candles = NodePath("candles")
 
 [node name="release_timer" type="Timer" parent="."]
 wait_time = 5.0
-one_shot = true
-
-[node name="angry_release_timer" type="Timer" parent="."]
-wait_time = 20.0
 one_shot = true
 
 [node name="candles" type="GPUParticles2D" parent="."]
@@ -151,24 +143,6 @@ collision_mask = 256
 [node name="CollisionShape2D" type="CollisionShape2D" parent="food_collect_area"]
 position = Vector2(5, -6)
 shape = SubResource("CircleShape2D_tcw2n")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-modulate = Color(1, 1, 1, 0.823529)
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -7.0
-offset_top = -36.0
-offset_right = 18.0
-offset_bottom = -30.0
-grow_horizontal = 2
-grow_vertical = 2
-max_value = 20.0
-value = 15.0
-texture_over = ExtResource("7_sc645")
-texture_progress = ExtResource("8_ubbn0")
 
 [node name="wine" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_sc645")

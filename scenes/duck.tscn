@@ -125,6 +125,7 @@ _data = {
 radius = 42.0
 
 [node name="duck" type="PathFollow2D" node_paths=PackedStringArray("quack_sfx", "quack_timer", "duck_sprite", "angry_drake_sprite", "genderkerchief", "duck_area", "animation_player", "drake_scare_area")]
+position = Vector2(-26, -15)
 script = ExtResource("1_ircvx")
 speed = 0.01
 quack_sfx = NodePath("quack_sfx")
@@ -135,8 +136,8 @@ angry_drake_sprite = NodePath("quacking_sprite")
 genderkerchief = NodePath("genderkerchief")
 duck_sprites = Array[CompressedTexture2D]([ExtResource("4_hwgnm"), ExtResource("4_mwjdu"), ExtResource("2_kls7j")])
 duck_area = NodePath("duck_area")
-quack_timer_min = 10.0
-quack_timer_max = 20.0
+quack_timer_min = 5.0
+quack_timer_max = 15.0
 animation_player = NodePath("AnimationPlayer")
 drake_scare_area = NodePath("drake_scare_area")
 
@@ -164,10 +165,12 @@ stream = ExtResource("4_kls7j")
 wait_time = 10.0
 
 [node name="duck_area" type="Area2D" parent="."]
+visible = false
 collision_layer = 2
 collision_mask = 17
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="duck_area"]
+visible = false
 shape = SubResource("CircleShape2D_hwgnm")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -177,10 +180,12 @@ libraries = {
 autoplay = "duckling"
 
 [node name="drake_scare_area" type="Area2D" parent="."]
+visible = false
 collision_layer = 512
 collision_mask = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="drake_scare_area"]
+visible = false
 shape = SubResource("CircleShape2D_aqhuf")
 debug_color = Color(0.794, 0.406, 0.352, 0.083)

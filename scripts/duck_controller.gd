@@ -78,9 +78,18 @@ func update_duck_state(area_name: String):
 				genderkerchief.visible = false
 				angry_loop_started = true
 				drake_scare_area.set_deferred("monitorable", true)
-			elif current_gender == DuckGender.HEN:
+			elif current_gender == DuckGender.HEN:func spawn_duck_on_random_path():
+	var paths = get_tree().get_nodes_in_group("path")
+	if paths.size() > 0:
+		var random_path = paths[randi_range(0, paths.size() - 1)]
+		random_path.spawn_duck()
+		queue_free()
+
+func reset_cursor():
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
+	modulate = Color(1.0, 1.0, 1.0, 1.0)
 				remove_from_group("hen")
-				get_node("/root/main").spawn_egg(randi_range(3, 6))
+				get_node("/root/main").spawn_egg(randi_range(1, 4))
 				get_node("/root/main").add_duck_to_pond("hen")
 				queue_free()
 			

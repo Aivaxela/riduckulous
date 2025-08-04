@@ -4,8 +4,6 @@ extends Node
 @export var egg_scene: PackedScene
 @export var pond_duck: PackedScene
 @export var duck_pond_spawn_point: Marker2D
-@export var drake_count_label: Label
-@export var hen_count_label: Label
 @export var tut_button: Button
 @export var tut_sprite1: Sprite2D
 @export var tut_sprite2: Sprite2D
@@ -13,11 +11,13 @@ extends Node
 @export var tut_sprite4: Sprite2D
 @export var tut_sprite5: Sprite2D
 @export var tut_sprite6: Sprite2D
+@export var game_timer: Timer
 
 var drake_count: int = 0
 var hen_count: int = 0
 var tut_screen: int = 1
 var game_started: bool = false
+var ducks_in_pond: int = 0
 
 func _ready():
 	volume_slider.value = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("Master"))
@@ -25,10 +25,7 @@ func _ready():
 	volume_slider.mouse_entered.connect(_on_volume_slider_mouse_entered)
 	volume_slider.mouse_exited.connect(_on_volume_slider_mouse_exited)
 	tut_button.pressed.connect(_on_tut_button_pressed)
-
-func _process(_delta):
-	drake_count_label.text = "Drakes: " + str(drake_count)
-	hen_count_label.text = "Hens: " + str(hen_count)
+	game_timer.timeout.connect(_on_game_timer_timeout)
 
 func decide_duck_gender() -> String:
 	if drake_count < hen_count:
@@ -48,6 +45,7 @@ func spawn_egg(amount: int):
 		call_deferred("add_child", egg)
 
 func add_duck_to_pond(duck_type: String):
+	ducks_in_pond += 1
 	call_deferred("add_duck_deferred", duck_type)
 
 func add_duck_deferred(duck_type: String):
@@ -90,3 +88,10 @@ func _on_tut_button_pressed():
 		tut_sprite6.visible = false
 		game_started = true
 		tut_button.visible = false
+		game_timer.start()
+
+func _on_game_timer_timeout():
+	# Store the duck count in a global variable or pass it to the next scene
+	# For now, we'll use a simple approach by storing it in a global variable
+	get_tree().current_scene.set_meta("ducks_in_pond", ducks_in_pond)
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
